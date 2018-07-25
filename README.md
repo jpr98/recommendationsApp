@@ -62,7 +62,7 @@ The main audience is people who love making good suggestions to other people.
 - Upload to app store
 
 ## Future features
-Wishlists
-Follow friends (Spotify like system)
-Explore section with lists from all your friends
-Notifications
+- Wishlists
+- Follow friends (Spotify like system)
+- Explore section with lists from all your friends
+- Notifications
