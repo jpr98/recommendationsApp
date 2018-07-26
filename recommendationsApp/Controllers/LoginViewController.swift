@@ -16,9 +16,9 @@ typealias FIRUser = FirebaseAuth.User
 class LoginViewController: UIViewController {
 	// MARK: Properties
 	
-//	let providers: [FUIAuthProvider] = [
-//		FUIFacebookAuth()
-//	]
+	let providers: [FUIAuthProvider] = [
+		FUIFacebookAuth()
+	]
 	// MARK: Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,10 +29,9 @@ class LoginViewController: UIViewController {
 			else { return }
 		
 		authUI.delegate = self
-//		authUI.providers = providers
+		authUI.providers = providers
 		let authViewController = authUI.authViewController()
 		present(authViewController, animated: true)
-		
 	}
 }
 extension LoginViewController: FUIAuthDelegate {

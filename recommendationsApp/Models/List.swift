@@ -12,4 +12,9 @@ class List {
 	// MARK: Properites
 	let recommendations: [Recommendation]
 	let category: String
+	
+	init(recommendations: [Recommendation], category: String) {
+		self.recommendations = recommendations
+		self.category = category
+	}
 }

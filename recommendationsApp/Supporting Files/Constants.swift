@@ -14,4 +14,8 @@ struct Constants {
 		static let toCreateUsername = "toCreateUsername"
 	}
 	
+	struct CellIdentifier {
+		static let MyListCell = "MyListCell"
+	}
+	
 }

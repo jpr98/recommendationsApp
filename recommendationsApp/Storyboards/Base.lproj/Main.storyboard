@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M30-ui-CET">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shared with me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fu3-f5-WqX">
-                                        <rect key="frame" x="10" y="85" width="238" height="40"/>
+                                        <rect key="frame" x="10" y="70" width="238" height="40"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                                 <color key="backgroundColor" red="0.7565940223185661" green="1" blue="0.52028279820903489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="fu3-f5-WqX" secondAttribute="bottom" constant="10" id="LPK-Ip-Jl4"/>
-                                    <constraint firstAttribute="height" constant="135" id="Xva-yt-aoi"/>
+                                    <constraint firstAttribute="height" constant="120" id="Xva-yt-aoi"/>
                                     <constraint firstItem="fu3-f5-WqX" firstAttribute="leading" secondItem="M30-ui-CET" secondAttribute="leading" constant="10" id="arU-pY-kms"/>
                                 </constraints>
                             </view>
@@ -50,46 +50,6 @@
             </objects>
             <point key="canvasLocation" x="206" y="271"/>
         </scene>
-        <!--My Lists-->
-        <scene sceneID="zqe-Hl-wnA">
-            <objects>
-                <viewController id="hYB-aD-yFL" customClass="MyListsViewController" customModule="recommendationsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="IeS-Vi-Q5N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fee-L2-Zcf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Lists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olK-0Y-zjq">
-                                        <rect key="frame" x="10" y="85" width="128" height="40"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.69197173687593516" green="1" blue="0.66903350060562927" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="olK-0Y-zjq" secondAttribute="bottom" constant="10" id="V3i-JZ-g5n"/>
-                                    <constraint firstAttribute="height" constant="135" id="YeW-jB-WI8"/>
-                                    <constraint firstItem="olK-0Y-zjq" firstAttribute="leading" secondItem="fee-L2-Zcf" secondAttribute="leading" constant="10" id="nEl-cI-gaz"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="fee-L2-Zcf" firstAttribute="leading" secondItem="DLF-Dz-jgH" secondAttribute="leading" id="8AD-DK-DYg"/>
-                            <constraint firstItem="fee-L2-Zcf" firstAttribute="top" secondItem="IeS-Vi-Q5N" secondAttribute="top" id="S2l-Yb-Xa6"/>
-                            <constraint firstItem="fee-L2-Zcf" firstAttribute="trailing" secondItem="DLF-Dz-jgH" secondAttribute="trailing" id="foq-a5-EIt"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="DLF-Dz-jgH"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="My Lists" id="ejQ-MI-lm6"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="smO-YX-CBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="205.59999999999999" y="-437.4384236453202"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sPB-zI-oS8">
             <objects>
@@ -100,13 +60,23 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="hYB-aD-yFL" kind="relationship" relationship="viewControllers" id="Ejb-X1-ywK"/>
+                        <segue destination="hsm-UK-Qp0" kind="relationship" relationship="viewControllers" id="Ejb-X1-ywK"/>
                         <segue destination="0tq-l4-MvI" kind="relationship" relationship="viewControllers" id="wBf-Lp-YBR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdi-Tk-aMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-744" y="-56"/>
+        </scene>
+        <!--MyLists-->
+        <scene sceneID="tk9-MW-oN5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyLists" id="hsm-UK-Qp0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="m0x-YX-8EM"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rj8-LT-4rm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="205.59999999999999" y="-437.4384236453202"/>
         </scene>
     </scenes>
 </document>

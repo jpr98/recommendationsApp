@@ -22,6 +22,8 @@
 		0B7F0E8321090C9500385E27 /* MyListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0E8221090C9500385E27 /* MyListsViewController.swift */; };
 		0B7F0E872109120F00385E27 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0E862109120F00385E27 /* Recommendation.swift */; };
 		0B7F0E89210912D100385E27 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0E88210912D100385E27 /* List.swift */; };
+		0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */; };
+		0B7F0EBE210A6C6C00385E27 /* MyLists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F0EBD210A6C6C00385E27 /* MyLists.storyboard */; };
 		8FFEEED3C7385A43C4B5426A /* Pods_recommendationsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D2C9816A845797BFC2523F6 /* Pods_recommendationsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		0B7F0E8221090C9500385E27 /* MyListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListsViewController.swift; sourceTree = "<group>"; };
 		0B7F0E862109120F00385E27 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		0B7F0E88210912D100385E27 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B7F0EBD210A6C6C00385E27 /* MyLists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyLists.storyboard; sourceTree = "<group>"; };
 		2D2C9816A845797BFC2523F6 /* Pods_recommendationsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_recommendationsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95807E382C61FB46FF5C1C1 /* Pods-recommendationsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recommendationsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-recommendationsApp/Pods-recommendationsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F8028491011DF8A1167F3798 /* Pods-recommendationsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recommendationsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-recommendationsApp/Pods-recommendationsApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		0B6B0EA22107B35F009A36C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 		0B6B0EA62107B538009A36C5 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				0B7F0EBD210A6C6C00385E27 /* MyLists.storyboard */,
 				0B6B0E982107B2DD009A36C5 /* LaunchScreen.storyboard */,
 				0B6B0E932107B2DB009A36C5 /* Main.storyboard */,
 				0B6B0EA72107B5A7009A36C5 /* Login.storyboard */,
@@ -242,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B7F0EBE210A6C6C00385E27 /* MyLists.storyboard in Resources */,
 				0B6B0EA82107B5A7009A36C5 /* Login.storyboard in Resources */,
 				0B6B0E9A2107B2DD009A36C5 /* LaunchScreen.storyboard in Resources */,
 				0B6B0EAE2107CBB9009A36C5 /* GoogleService-Info.plist in Resources */,
@@ -332,6 +339,7 @@
 			files = (
 				0B7F0E872109120F00385E27 /* Recommendation.swift in Sources */,
 				0B7F0E7C2108EE3700385E27 /* Constants.swift in Sources */,
+				0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */,
 				0B7F0E7A2108ED2B00385E27 /* CreateUsernameViewController.swift in Sources */,
 				0B7F0E89210912D100385E27 /* List.swift in Sources */,
 				0B7F0E8321090C9500385E27 /* MyListsViewController.swift in Sources */,

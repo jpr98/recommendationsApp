@@ -13,4 +13,10 @@ class Recommendation {
 	let title: String
 	let rating: Int
 	let description: String
+	
+	init(title: String, rating: Int, description: String) {
+		self.title = title
+		self.rating = rating
+		self.description = description
+	}
 }
