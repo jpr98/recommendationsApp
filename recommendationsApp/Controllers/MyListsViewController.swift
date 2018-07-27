@@ -56,13 +56,15 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 		return cell
 	}
 	
+	
 	// SELECT CELL
-//	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//		let cell = collectionView.cellForItem(at: indexPath)
-//		print("selected")
-//		cell?.layer.borderColor = UIColor.blue.cgColor
-//		cell?.layer.borderWidth = 1.5
-//	}
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let cell = collectionView.cellForItem(at: indexPath)
+		print("selected")
+		cell?.layer.borderColor = UIColor.blue.cgColor
+		cell?.layer.borderWidth = 1.5
+		performSegue(withIdentifier: Constants.SegueIdentifier.showList, sender: (Any).self)
+	}
 }
 
 

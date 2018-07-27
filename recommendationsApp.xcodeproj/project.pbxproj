@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B47E357210AA18400BBDC16 /* UIButton+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47E356210AA18400BBDC16 /* UIButton+Utility.swift */; };
+		0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */; };
 		0B6B0E902107B2DB009A36C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B0E8F2107B2DB009A36C5 /* AppDelegate.swift */; };
 		0B6B0E952107B2DB009A36C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6B0E932107B2DB009A36C5 /* Main.storyboard */; };
 		0B6B0E972107B2DD009A36C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B6B0E962107B2DD009A36C5 /* Assets.xcassets */; };
@@ -24,10 +26,13 @@
 		0B7F0E89210912D100385E27 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0E88210912D100385E27 /* List.swift */; };
 		0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */; };
 		0B7F0EBE210A6C6C00385E27 /* MyLists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F0EBD210A6C6C00385E27 /* MyLists.storyboard */; };
+		0B7F0EC0210A6E3B00385E27 /* DisplayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */; };
 		8FFEEED3C7385A43C4B5426A /* Pods_recommendationsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D2C9816A845797BFC2523F6 /* Pods_recommendationsApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B47E356210AA18400BBDC16 /* UIButton+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Utility.swift"; sourceTree = "<group>"; };
+		0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListTableViewCell.swift; sourceTree = "<group>"; };
 		0B6B0E8C2107B2DB009A36C5 /* recommendationsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recommendationsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B6B0E8F2107B2DB009A36C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B6B0E942107B2DB009A36C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +53,7 @@
 		0B7F0E88210912D100385E27 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B7F0EBD210A6C6C00385E27 /* MyLists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyLists.storyboard; sourceTree = "<group>"; };
+		0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListViewController.swift; sourceTree = "<group>"; };
 		2D2C9816A845797BFC2523F6 /* Pods_recommendationsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_recommendationsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95807E382C61FB46FF5C1C1 /* Pods-recommendationsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recommendationsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-recommendationsApp/Pods-recommendationsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F8028491011DF8A1167F3798 /* Pods-recommendationsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recommendationsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-recommendationsApp/Pods-recommendationsApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 		0B6B0EA22107B35F009A36C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */,
 				0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -120,6 +127,7 @@
 		0B6B0EA32107B36D009A36C5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */,
 				0B6B0EAB2107C570009A36C5 /* LoginViewController.swift */,
 				0B7F0E792108ED2B00385E27 /* CreateUsernameViewController.swift */,
 				0B7F0E8221090C9500385E27 /* MyListsViewController.swift */,
@@ -161,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				0B7F0E802108FED400385E27 /* Storyboard+Utility.swift */,
+				0B47E356210AA18400BBDC16 /* UIButton+Utility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,8 +348,10 @@
 			files = (
 				0B7F0E872109120F00385E27 /* Recommendation.swift in Sources */,
 				0B7F0E7C2108EE3700385E27 /* Constants.swift in Sources */,
+				0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */,
 				0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */,
 				0B7F0E7A2108ED2B00385E27 /* CreateUsernameViewController.swift in Sources */,
+				0B47E357210AA18400BBDC16 /* UIButton+Utility.swift in Sources */,
 				0B7F0E89210912D100385E27 /* List.swift in Sources */,
 				0B7F0E8321090C9500385E27 /* MyListsViewController.swift in Sources */,
 				0B7F0E7E2108F18900385E27 /* UserService.swift in Sources */,
@@ -348,6 +359,7 @@
 				0B6B0E902107B2DB009A36C5 /* AppDelegate.swift in Sources */,
 				0B7F0E812108FED400385E27 /* Storyboard+Utility.swift in Sources */,
 				0B6B0EAA2107C522009A36C5 /* User.swift in Sources */,
+				0B7F0EC0210A6E3B00385E27 /* DisplayListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
