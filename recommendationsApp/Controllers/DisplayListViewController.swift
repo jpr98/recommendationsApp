@@ -21,8 +21,13 @@ class DisplayListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		// set image of list
+		imageView.image = UIImage(named:"bksncofee")
+		// set title of list
+		listCatgoryLabel.text = list.category
+		
 		cardView.layer.masksToBounds = true
-		cardView.layer.cornerRadius = 6
+		cardView.layer.cornerRadius = 8
 		addButton.layer.masksToBounds = true
 		addButton.layer.cornerRadius = addButton.bounds.size.width * 0.5
 		
