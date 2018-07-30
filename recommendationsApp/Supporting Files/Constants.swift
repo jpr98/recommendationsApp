@@ -10,9 +10,16 @@ import Foundation
 
 struct Constants {
 	
+	struct UserDefaults {
+		static let currentUser = "currentUser"
+	}
+	
 	struct SegueIdentifier {
 		static let toCreateUsername = "toCreateUsername"
 		static let showList = "showList"
+		static let addList = "addList"
+		static let addToList = "addToList"
+		static let confirmAdd = "confirmAdd"
 	}
 	
 	struct CellIdentifier {

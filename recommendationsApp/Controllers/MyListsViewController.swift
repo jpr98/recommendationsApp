@@ -64,7 +64,18 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 		cell?.layer.borderColor = UIColor.blue.cgColor
 		cell?.layer.borderWidth = 1.5
 		performSegue(withIdentifier: Constants.SegueIdentifier.showList, sender: (Any).self)
+		addButton.alpha = 0
 	}
+	
+	@IBAction func addButtonTapped(_ sender: Any) {
+		performSegue(withIdentifier: Constants.SegueIdentifier.addList, sender: (Any).self)
+		addButton.alpha = 0
+	}
+	
+	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
+		addButton.alpha = 1
+	}
+	
 }
 
 

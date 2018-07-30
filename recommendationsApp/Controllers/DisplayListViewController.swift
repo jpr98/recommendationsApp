@@ -26,14 +26,26 @@ class DisplayListViewController: UIViewController {
 		// set title of list
 		listCatgoryLabel.text = list.category
 		
+		// think about card shadow
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
+		
 		addButton.layer.masksToBounds = true
 		addButton.layer.cornerRadius = addButton.bounds.size.width * 0.5
 		
 		tableView.delegate = self
 		tableView.dataSource = self
     }
+	
+	
+	@IBAction func addButtonTapped(_ sender: UIButton) {
+		addButton.alpha = 0
+		performSegue(withIdentifier: Constants.SegueIdentifier.addToList, sender: (Any).self)
+	}
+	
+	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
+		addButton.alpha = 1
+	}
 }
 extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
