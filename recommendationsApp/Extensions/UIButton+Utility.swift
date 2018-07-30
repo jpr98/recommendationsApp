@@ -15,9 +15,9 @@ extension UIButton {
 		return Recommendation(title: title, rating: rating, description: description)
 	}
 	
-	// need to check if category already exists, if ti does add recommendation to that list, else create new list with that category and recommendation
-	func addList(title: String, rating: Int, description: String, category: String) -> List {
-		return List(recommendations: [Recommendation(title: title, rating: rating, description: description)], category: category)
-	}
+	// need to check if category already exists, if it does add recommendation to that list, else create new list with that category and recommendation
+//	func addList(title: String, rating: Int, description: String, category: String) -> List {
+//		return List(recommendations: [Recommendation(title: title, rating: rating, description: description)], category: category)
+//	}
 }
 

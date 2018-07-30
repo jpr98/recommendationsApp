@@ -214,6 +214,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="iJ0-I3-eLr" id="3fx-0U-YLK"/>
+                        <outlet property="cardView" destination="MbX-Np-Wac" id="4Zy-oK-XDM"/>
                         <outlet property="categoryTextField" destination="0nj-uc-S0P" id="cg4-4b-3ER"/>
                         <outlet property="createButton" destination="Bky-8i-sWO" id="0ET-pF-Mzj"/>
                     </connections>
@@ -488,6 +489,7 @@
                     <connections>
                         <outlet property="addButton" destination="9aN-7n-3m9" id="ATR-eG-jtQ"/>
                         <outlet property="cancelButton" destination="8zU-eX-O64" id="8It-9q-PEU"/>
+                        <outlet property="cardView" destination="1qW-5P-b6W" id="FdW-gB-IRU"/>
                         <outlet property="descriptionTextView" destination="Kef-V3-vLU" id="2S6-fE-u7e"/>
                         <outlet property="ratingSegmentedControl" destination="cvk-Cf-UcJ" id="1eE-fF-MED"/>
                         <outlet property="titleTextField" destination="Fc1-S5-4U1" id="g7g-Yj-Ni8"/>

@@ -77,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B600577210F98BB004CEA83 /* Login Flow */ = {
+			isa = PBXGroup;
+			children = (
+				0B6B0EAB2107C570009A36C5 /* LoginViewController.swift */,
+				0B7F0E792108ED2B00385E27 /* CreateUsernameViewController.swift */,
+			);
+			path = "Login Flow";
+			sourceTree = "<group>";
+		};
 		0B6B0E832107B2DB009A36C5 = {
 			isa = PBXGroup;
 			children = (
@@ -133,12 +142,11 @@
 		0B6B0EA32107B36D009A36C5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B600577210F98BB004CEA83 /* Login Flow */,
 				0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */,
-				0B6B0EAB2107C570009A36C5 /* LoginViewController.swift */,
-				0B7F0E792108ED2B00385E27 /* CreateUsernameViewController.swift */,
+				0B600575210F933C004CEA83 /* AddRecommendationToListViewController.swift */,
 				0B7F0E8221090C9500385E27 /* MyListsViewController.swift */,
 				0B600573210F9052004CEA83 /* CreateListViewController.swift */,
-				0B600575210F933C004CEA83 /* AddRecommendationToListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

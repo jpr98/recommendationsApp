@@ -14,8 +14,8 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 	
 	@IBOutlet weak var addButton: UIButton!
 	
-	// Load from firebase database in the future
-	let myLists: [List] = [List(recommendations: [], category: "Books"), List(recommendations: [], category: "Travel"), List(recommendations: [], category: "Online Courses"), List(recommendations: [], category: "Shopping")]
+	var myLists: [List] = []
+	
 	let images = [
 		UIImage(named: "bksncofee"),
 		UIImage(named: "travel"),
@@ -35,6 +35,11 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 		
 		addButton.layer.masksToBounds = true
 		addButton.layer.cornerRadius = 0.5 * addButton.bounds.size.width
+		
+		ListService.showAllLists { (lists) in
+			self.myLists = lists
+			self.collectionView.reloadData()
+		}
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

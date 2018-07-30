@@ -13,11 +13,17 @@ class CreateListViewController: UIViewController {
 	@IBOutlet weak var categoryTextField: UITextField!
 	@IBOutlet weak var createButton: UIButton!
 	@IBOutlet weak var cancelButton: UIButton!
+	@IBOutlet weak var cardView: UIView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		cardView.layer.masksToBounds = true
+		cardView.layer.cornerRadius = 8
+
 	}
 	
+	// this can be deleted because of prepare for segue function below does action when button tapped
 	@IBAction func createButtonTapped(_ sender: UIButton) {
 		print("create button tapped")
 	}
@@ -27,6 +33,7 @@ class CreateListViewController: UIViewController {
 		
 		switch identifier {
 		case "create":
+			ListService.create(category: categoryTextField.text!)
 			print("list created?")
 		case "cancel":
 			print("create list canceled")

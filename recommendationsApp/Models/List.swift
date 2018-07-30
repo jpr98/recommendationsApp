@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import FirebaseDatabase.FIRDataSnapshot
 
 class List {
 	// MARK: Properites
 	let recommendations: [Recommendation]
 	let category: String
+	let referencingId: String
 	
-	init(recommendations: [Recommendation], category: String) {
+	init(recommendations: [Recommendation], category: String, listId: String) {
 		self.recommendations = recommendations
 		self.category = category
+		self.referencingId = listId
 	}
 }

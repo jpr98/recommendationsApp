@@ -16,7 +16,7 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var listCatgoryLabel: UILabel!
 
-	var list: List = List(recommendations: [Recommendation(title: "Harry Potter", rating: 5, description: "My first book!"),Recommendation(title: "Elon Musk", rating: 4, description: "Good for entrepreneuers")], category: "Books")
+	var list: List = List(recommendations: [Recommendation(title: "Harry Potter", rating: 5, description: "My first book!"),Recommendation(title: "Elon Musk", rating: 4, description: "Good for entrepreneuers")], category: "Books", listId: "sdfsfsf")
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +37,25 @@ class DisplayListViewController: UIViewController {
 		tableView.dataSource = self
     }
 	
-	
 	@IBAction func addButtonTapped(_ sender: UIButton) {
 		addButton.alpha = 0
 		performSegue(withIdentifier: Constants.SegueIdentifier.addToList, sender: (Any).self)
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		guard let identifier = segue.identifier else { return }
+		
+		let destination = segue.destination as! AddRecommendationToListViewController
+		// this needs to be the auto id of the list!!! not hard coded string
+		destination.listAutoId = "-LIh-OLkMzAMYWuPTT0R"
+		
+		switch identifier {
+		case Constants.SegueIdentifier.addToList:
+			print("add to list button tapped")
+		default:
+			print("unexpected segue identifier")
+		}
+	}
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		addButton.alpha = 1
 	}
