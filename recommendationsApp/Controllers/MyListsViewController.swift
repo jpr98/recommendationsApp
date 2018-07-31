@@ -11,8 +11,12 @@ import UIKit
 class MyListsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 	
 	@IBOutlet weak var collectionView: UICollectionView!
-	
 	@IBOutlet weak var addButton: UIButton!
+	@IBOutlet weak var selectButton: UIButton!
+	@IBOutlet weak var deleteButton: UIButton!
+	@IBOutlet weak var shareButton: UIButton!
+	
+	
 	
 	var myLists: [List] = []
 	
@@ -40,6 +44,15 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 		
 		addButton.layer.masksToBounds = true
 		addButton.layer.cornerRadius = 0.5 * addButton.bounds.size.width
+	}
+	
+	@IBAction func selectButtonTapped(_ sender: UIButton) {
+	}
+	
+	@IBAction func deleteButtonTapped(_ sender: UIButton) {
+	}
+	
+	@IBAction func shareButtonTapped(_ sender: UIButton) {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,12 +97,18 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 		}
 	}
 	
-//	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//		guard let identifier = segue.identifier else { return }
-//
-//		let destination = segue.destination as! DisplayListViewController
-//		destination.list =
-//	}
+	func transferIndexPath(indexPath: IndexPath) -> List {
+		return myLists[indexPath.item]
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == Constants.SegueIdentifier.showList,
+			let destination = segue.destination as? DisplayListViewController,
+			let selected = collectionView.indexPathsForSelectedItems{
+			let listToShow = selected[0].item
+			destination.list = myLists[listToShow]
+		}
+	}
 }
 
 

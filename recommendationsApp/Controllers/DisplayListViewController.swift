@@ -16,7 +16,7 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var listCatgoryLabel: UILabel!
 
-	var list: List = List(recommendations: [Recommendation(title: "Harry Potter", rating: 5, description: "My first book!"),Recommendation(title: "Elon Musk", rating: 4, description: "Good for entrepreneuers")], category: "Books", listId: "sdfsfsf")
+	var list = List(recommendations: [], category: "", listId: "")
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,9 @@ class DisplayListViewController: UIViewController {
 	
 	@IBAction func addButtonTapped(_ sender: UIButton) {
 		addButton.alpha = 0
+		ListService.showSpecificList(list) { (lis) in
+			print(lis)
+		}
 		performSegue(withIdentifier: Constants.SegueIdentifier.addToList, sender: (Any).self)
 	}
 	
@@ -46,8 +49,7 @@ class DisplayListViewController: UIViewController {
 		guard let identifier = segue.identifier else { return }
 		
 		let destination = segue.destination as! AddRecommendationToListViewController
-		// this needs to be the auto id of the list!!! not hard coded string
-		destination.listAutoId = "-LIh-OLkMzAMYWuPTT0R"
+		destination.listAutoId = list.referencingId
 		
 		switch identifier {
 		case Constants.SegueIdentifier.addToList:
@@ -58,6 +60,10 @@ class DisplayListViewController: UIViewController {
 	}
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		addButton.alpha = 1
+		ListService.showSpecificList(list) { (updatedList) in
+			self.list = updatedList
+			self.tableView.reloadData()
+		}
 	}
 }
 extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate {

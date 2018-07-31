@@ -79,4 +79,20 @@ struct ListService {
 	}
 	
 	// show specific list or maybe it can be done via delegate
+	static func showSpecificList(_ list: List, completion: @escaping(List) -> Void) {
+		let currentUser = User.current
+		let ref = Database.database().reference().child("lists").child(currentUser.uid).child(list.referencingId).child("recommendations")
+		let newList = List(recommendations: [], category: list.category, listId: list.referencingId)
+		
+		ref.observeSingleEvent(of: .value) { (snapshot) in
+			for child in snapshot.children {
+				let snap = child as! DataSnapshot
+				if let value = snap.value as? [String: Any] {
+					let recommendation = Recommendation(title: value["title"] as! String, rating: value["rating"] as! Int, description: value["description"] as! String)
+					newList.recommendations.append(recommendation)
+				}
+			}
+			completion(newList)
+		}
+	}
 }

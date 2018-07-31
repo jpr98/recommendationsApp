@@ -11,7 +11,7 @@ import FirebaseDatabase.FIRDataSnapshot
 
 class List {
 	// MARK: Properites
-	let recommendations: [Recommendation]
+	var recommendations: [Recommendation]
 	let category: String
 	let referencingId: String
 	
