@@ -25,6 +25,11 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		ListService.showAllLists { (lists) in
+			self.myLists = lists
+			self.collectionView.reloadData()
+		}
+		
 		collectionView.dataSource = self
 		collectionView.delegate = self
 		
@@ -35,11 +40,6 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 		
 		addButton.layer.masksToBounds = true
 		addButton.layer.cornerRadius = 0.5 * addButton.bounds.size.width
-		
-		ListService.showAllLists { (lists) in
-			self.myLists = lists
-			self.collectionView.reloadData()
-		}
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,7 +65,6 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 	// SELECT CELL
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let cell = collectionView.cellForItem(at: indexPath)
-		print("selected")
 		cell?.layer.borderColor = UIColor.blue.cgColor
 		cell?.layer.borderWidth = 1.5
 		performSegue(withIdentifier: Constants.SegueIdentifier.showList, sender: (Any).self)
@@ -79,8 +78,18 @@ class MyListsViewController: UIViewController, UICollectionViewDelegate, UIColle
 	
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		addButton.alpha = 1
+		ListService.showAllLists { (lists) in
+			self.myLists = lists
+			self.collectionView.reloadData()
+		}
 	}
 	
+//	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//		guard let identifier = segue.identifier else { return }
+//
+//		let destination = segue.destination as! DisplayListViewController
+//		destination.list =
+//	}
 }
 
 

@@ -53,20 +53,20 @@ struct ListService {
 		let ref = Database.database().reference().child("lists").child(currentUser.uid)
 		
 		ref.observeSingleEvent(of: .value) { (snapshot) in
-			print(snapshot)
 			for child in snapshot.children {
 				let snap = child as! DataSnapshot
 				if let value = snap.value as? [String:Any] {
 					let category = value["category"] as! String
 					var list = [Recommendation]()
 					if let recommendations = value["recommendations"] as? [String:Any] {
-						print(recommendations)
 						for (key,_) in recommendations {
 							if let reco = recommendations[key] as? [String: Any] {
 								list.append(Recommendation(title: reco["title"] as! String, rating: reco["rating"] as! Int, description: reco["description"] as! String))
 							}
 						}
 						lists.append(List(recommendations: list, category: category, listId: snap.key))
+					} else {
+						lists.append(List(recommendations: [], category: category, listId: snap.key))
 					}
 				}
 			}
