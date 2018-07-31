@@ -397,13 +397,16 @@
                     <connections>
                         <outlet property="addButton" destination="Lw9-Ib-Q8l" id="Bjf-27-Ikx"/>
                         <outlet property="cardView" destination="KAM-rt-sbX" id="auF-nK-Z8Q"/>
+                        <outlet property="darkenView" destination="gzv-Uh-knf" id="tDE-8G-LgO"/>
                         <outlet property="imageView" destination="V0m-WA-HYD" id="qpf-OB-4qA"/>
                         <outlet property="listCatgoryLabel" destination="YxR-6h-D98" id="7yo-EY-z4d"/>
                         <outlet property="tableView" destination="zqr-MS-adn" id="ouc-en-3FA"/>
                         <segue destination="YO6-BS-xwa" kind="presentation" identifier="addToList" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Vxh-nL-O3J"/>
+                        <segue destination="TWf-gv-84j" kind="unwind" identifier="backToMyLists" unwindAction="unwindWithSegue:" id="MYR-q4-bIc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjr-OC-O3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TWf-gv-84j" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2338" y="-771"/>
         </scene>

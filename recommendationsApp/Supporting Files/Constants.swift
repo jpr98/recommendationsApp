@@ -20,6 +20,7 @@ struct Constants {
 		static let addList = "addList"
 		static let addToList = "addToList"
 		static let confirmAdd = "confirmAdd"
+		static let backToMyLists = "backToMyLists"
 	}
 	
 	struct CellIdentifier {

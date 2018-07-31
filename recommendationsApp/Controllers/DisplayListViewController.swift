@@ -15,7 +15,8 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var listCatgoryLabel: UILabel!
-
+	@IBOutlet weak var darkenView: UIView!
+	
 	var list = List(recommendations: [], category: "", listId: "")
 	
     override func viewDidLoad() {
@@ -35,7 +36,16 @@ class DisplayListViewController: UIViewController {
 		
 		tableView.delegate = self
 		tableView.dataSource = self
+		
+		// tap surrounding view to dismiss
+		let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+		darkenView.addGestureRecognizer(tap)
+		darkenView.isUserInteractionEnabled = true
     }
+	
+	@objc func handleTap(_ sender: UITapGestureRecognizer) {
+		performSegue(withIdentifier: Constants.SegueIdentifier.backToMyLists, sender: (Any).self)
+	}
 	
 	@IBAction func addButtonTapped(_ sender: UIButton) {
 		addButton.alpha = 0
@@ -48,16 +58,18 @@ class DisplayListViewController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard let identifier = segue.identifier else { return }
 		
-		let destination = segue.destination as! AddRecommendationToListViewController
-		destination.listAutoId = list.referencingId
-		
 		switch identifier {
 		case Constants.SegueIdentifier.addToList:
+			let destination = segue.destination as! AddRecommendationToListViewController
+			destination.listAutoId = list.referencingId
 			print("add to list button tapped")
+		case Constants.SegueIdentifier.backToMyLists:
+			print("back to my lists segue")
 		default:
 			print("unexpected segue identifier")
 		}
 	}
+	
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		addButton.alpha = 1
 		ListService.showSpecificList(list) { (updatedList) in
