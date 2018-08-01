@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B47E357210AA18400BBDC16 /* UIButton+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47E356210AA18400BBDC16 /* UIButton+Utility.swift */; };
+		0B38F99E21112E060007CFA2 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38F99D21112E060007CFA2 /* UIImage+Utility.swift */; };
 		0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */; };
 		0B600572210BA80F004CEA83 /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B600571210BA80F004CEA83 /* ListService.swift */; };
 		0B600574210F9052004CEA83 /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B600573210F9052004CEA83 /* CreateListViewController.swift */; };
@@ -34,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B47E356210AA18400BBDC16 /* UIButton+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Utility.swift"; sourceTree = "<group>"; };
+		0B38F99D21112E060007CFA2 /* UIImage+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
 		0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListTableViewCell.swift; sourceTree = "<group>"; };
 		0B600571210BA80F004CEA83 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		0B600573210F9052004CEA83 /* CreateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				0B7F0E802108FED400385E27 /* Storyboard+Utility.swift */,
-				0B47E356210AA18400BBDC16 /* UIButton+Utility.swift */,
+				0B38F99D21112E060007CFA2 /* UIImage+Utility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -368,7 +368,6 @@
 				0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */,
 				0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */,
 				0B7F0E7A2108ED2B00385E27 /* CreateUsernameViewController.swift in Sources */,
-				0B47E357210AA18400BBDC16 /* UIButton+Utility.swift in Sources */,
 				0B7F0E89210912D100385E27 /* List.swift in Sources */,
 				0B7F0E8321090C9500385E27 /* MyListsViewController.swift in Sources */,
 				0B600574210F9052004CEA83 /* CreateListViewController.swift in Sources */,
@@ -379,6 +378,7 @@
 				0B6B0E902107B2DB009A36C5 /* AppDelegate.swift in Sources */,
 				0B7F0E812108FED400385E27 /* Storyboard+Utility.swift in Sources */,
 				0B6B0EAA2107C522009A36C5 /* User.swift in Sources */,
+				0B38F99E21112E060007CFA2 /* UIImage+Utility.swift in Sources */,
 				0B7F0EC0210A6E3B00385E27 /* DisplayListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

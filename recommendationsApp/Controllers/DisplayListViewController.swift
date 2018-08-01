@@ -16,6 +16,8 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var listCatgoryLabel: UILabel!
 	@IBOutlet weak var darkenView: UIView!
+	@IBOutlet weak var optionsButton: UIButton!
+	
 	
 	var list = List(recommendations: [], category: "", listId: "")
 	

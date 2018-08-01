@@ -27,6 +27,14 @@ struct ListService {
 	}
 	
 	// delete list (later)
+	static func deleteLists(lists: [List]) {
+		let currentUser = User.current
+		
+		for list in lists {
+			let ref = Database.database().reference().child("lists").child(currentUser.uid).child(list.referencingId)
+			ref.removeValue()
+		}
+	}
 	
 	// add to list
 	static func addToList(categoryAutoId: String, title: String, rating: Int, description: String) {

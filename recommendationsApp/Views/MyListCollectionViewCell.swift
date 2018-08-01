@@ -10,6 +10,6 @@ import UIKit
 
 class MyListCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var backgroundImage: UIImageView!
-	
 	@IBOutlet weak var listCategoryLabel: UILabel!
+	var hasBeenSelected: Bool!
 }
