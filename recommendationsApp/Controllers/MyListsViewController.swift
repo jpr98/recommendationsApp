@@ -88,6 +88,7 @@ class MyListsViewController: UIViewController {
 		addButton.layer.shadowOpacity = 0.75
 		addButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
 		
+		//shareButton.layer.backgroundColor = UIColor.gray.cgColor
 		shareButton.layer.masksToBounds = false
 		shareButton.layer.cornerRadius = 0.5 * shareButton.bounds.size.width
 		shareButton.layer.shadowRadius = 5
@@ -137,6 +138,8 @@ class MyListsViewController: UIViewController {
 	}
 	
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
+		performSegue(withIdentifier: Constants.SegueIdentifier.toShare, sender: (Any).self)
+		shareButton.alpha = 0
 	}
 	
 	@IBAction func addButtonTapped(_ sender: Any) {
@@ -147,6 +150,7 @@ class MyListsViewController: UIViewController {
 	// MARK: Segues
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		addButton.alpha = 1
+		shareButton.alpha = 1
 		ListService.showAllLists { (lists) in
 			self.myLists = lists
 			self.collectionView.reloadData()
@@ -154,11 +158,29 @@ class MyListsViewController: UIViewController {
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == Constants.SegueIdentifier.showList,
-			let destination = segue.destination as? DisplayListViewController,
-			let selected = collectionView.indexPathsForSelectedItems{
-			let listToShow = selected[0].item
-			destination.list = myLists[listToShow]
+//		if segue.identifier == Constants.SegueIdentifier.showList,
+//			let destination = segue.destination as? DisplayListViewController,
+//			let selected = collectionView.indexPathsForSelectedItems{
+//			let listToShow = selected[0].item
+//			destination.list = myLists[listToShow]
+//		}
+		guard let identifier = segue.identifier else { return }
+		switch identifier {
+		case Constants.SegueIdentifier.showList:
+			if let destination = segue.destination as? DisplayListViewController,
+				let selected = collectionView.indexPathsForSelectedItems {
+				let listToShow = selected[0].item
+				destination.list = myLists[listToShow]
+			}
+		case Constants.SegueIdentifier.toShare:
+			print("to share")
+//			if let destination = segue.destination as? ShareViewController {
+//				let shareStack = collectionView.indexPathsForSelectedItems {
+//					destination.shareStack = shareStack
+//				}
+//			}
+		default:
+			print("unexpected segue identifier")
 		}
 	}
 }
@@ -212,7 +234,7 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 			cell.hasBeenSelected = true
 		} else {
 			performSegue(withIdentifier: Constants.SegueIdentifier.showList, sender: (Any).self)
-			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
 				self.addButton.alpha = 0
 			}
 		}

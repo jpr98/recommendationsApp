@@ -20,13 +20,16 @@ struct Constants {
 		static let addList = "addList"
 		static let addToList = "addToList"
 		static let confirmAdd = "confirmAdd"
-		static let backToMyLists = "backToMyLists"
+		static let backToMyListsFromDisplay = "backToMyListsFromDisplay"
+		static let toShare = "toShare"
+		static let backToMyListsFromShare = "backToMyListsFromShare"
 	}
 	
 	struct CellIdentifier {
 		static let MyListCell = "MyListCell"
 		static let RecommendationCell = "RecommendationCell"
-		static let userCell = "userCell"
+		static let userCell = "userCell" // not in use
+		static let usernameCell = "usernameCell"
 	}
 	
 }

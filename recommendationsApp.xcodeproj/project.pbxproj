@@ -30,6 +30,8 @@
 		0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */; };
 		0B7F0EBE210A6C6C00385E27 /* MyLists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F0EBD210A6C6C00385E27 /* MyLists.storyboard */; };
 		0B7F0EC0210A6E3B00385E27 /* DisplayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */; };
+		0BA9807C2118D6D4001E936F /* UsernameSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9807B2118D6D4001E936F /* UsernameSearchTableViewCell.swift */; };
+		0BA9807E2118D785001E936F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9807D2118D785001E936F /* ShareViewController.swift */; };
 		0BB2B6AF21137FAD00BE768E /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B6AE21137FAD00BE768E /* ExploreViewController.swift */; };
 		0BB2B6B12113804E00BE768E /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B6B02113804E00BE768E /* FollowService.swift */; };
 		0BB2B6B32113995700BE768E /* UserSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B6B22113995700BE768E /* UserSearchTableViewCell.swift */; };
@@ -64,6 +66,8 @@
 		0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B7F0EBD210A6C6C00385E27 /* MyLists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyLists.storyboard; sourceTree = "<group>"; };
 		0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListViewController.swift; sourceTree = "<group>"; };
+		0BA9807B2118D6D4001E936F /* UsernameSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameSearchTableViewCell.swift; sourceTree = "<group>"; };
+		0BA9807D2118D785001E936F /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		0BB2B6AE21137FAD00BE768E /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		0BB2B6B02113804E00BE768E /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		0BB2B6B22113995700BE768E /* UserSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */,
 				0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */,
 				0BB2B6B22113995700BE768E /* UserSearchTableViewCell.swift */,
+				0BA9807B2118D6D4001E936F /* UsernameSearchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				0B7F0E8221090C9500385E27 /* MyListsViewController.swift */,
 				0B600573210F9052004CEA83 /* CreateListViewController.swift */,
 				0BB2B6AE21137FAD00BE768E /* ExploreViewController.swift */,
+				0BA9807D2118D785001E936F /* ShareViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -383,12 +389,14 @@
 				0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */,
 				0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */,
 				0B7F0E7A2108ED2B00385E27 /* CreateUsernameViewController.swift in Sources */,
+				0BA9807C2118D6D4001E936F /* UsernameSearchTableViewCell.swift in Sources */,
 				0B7F0E89210912D100385E27 /* List.swift in Sources */,
 				0B7F0E8321090C9500385E27 /* MyListsViewController.swift in Sources */,
 				0B600574210F9052004CEA83 /* CreateListViewController.swift in Sources */,
 				0B7F0E7E2108F18900385E27 /* UserService.swift in Sources */,
 				0B600572210BA80F004CEA83 /* ListService.swift in Sources */,
 				0B600576210F933C004CEA83 /* AddRecommendationToListViewController.swift in Sources */,
+				0BA9807E2118D785001E936F /* ShareViewController.swift in Sources */,
 				0B6B0EAC2107C570009A36C5 /* LoginViewController.swift in Sources */,
 				0BB2B6B32113995700BE768E /* UserSearchTableViewCell.swift in Sources */,
 				0B6B0E902107B2DB009A36C5 /* AppDelegate.swift in Sources */,

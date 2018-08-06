@@ -25,6 +25,8 @@ class AddRecommendationToListViewController: UIViewController, UITextViewDelegat
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		titleTextField.delegate = self
+		
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
 		
@@ -83,3 +85,15 @@ class AddRecommendationToListViewController: UIViewController, UITextViewDelegat
 		}
 	}
 }
+// TextFieldDelegate
+extension AddRecommendationToListViewController: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		titleTextField.resignFirstResponder()
+		return true
+	}
+}
+
+
+
+
+

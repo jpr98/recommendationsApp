@@ -62,7 +62,7 @@ class DisplayListViewController: UIViewController {
 	}
 	
 	@objc func handleTap(_ sender: UITapGestureRecognizer) {
-		performSegue(withIdentifier: Constants.SegueIdentifier.backToMyLists, sender: (Any).self)
+		performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromDisplay, sender: (Any).self)
 	}
 	
 	@IBAction func addButtonTapped(_ sender: UIButton) {
@@ -81,7 +81,7 @@ class DisplayListViewController: UIViewController {
 			let destination = segue.destination as! AddRecommendationToListViewController
 			destination.listAutoId = list.referencingId
 			print("add to list button tapped")
-		case Constants.SegueIdentifier.backToMyLists:
+		case Constants.SegueIdentifier.backToMyListsFromDisplay:
 			print("back to my lists segue")
 		default:
 			print("unexpected segue identifier")

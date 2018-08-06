@@ -19,6 +19,8 @@ class CreateListViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		categoryTextField.delegate = self
+		
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
 		createButton.layer.cornerRadius = 6
@@ -51,5 +53,11 @@ class CreateListViewController: UIViewController {
 		default:
 			print("unexpected segue identifier")
 		}
+	}
+}
+extension CreateListViewController: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		categoryTextField.resignFirstResponder()
+		return true
 	}
 }
