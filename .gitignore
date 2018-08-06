@@ -53,3 +53,10 @@ Pods/
 #
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
+recommendationsApp/Supporting Files/Assets.xcassets/bksncofee.imageset/bksncofee.jpg
+recommendationsApp/Supporting Files/Assets.xcassets/course.imageset/course.jpg
+recommendationsApp/Supporting Files/Assets.xcassets/film.imageset/film.jpg
+recommendationsApp/Supporting Files/Assets.xcassets/restaurant.imageset/restaurant.jpg
+recommendationsApp/Supporting Files/Assets.xcassets/retail.imageset/retail.jpg
+recommendationsApp/Supporting Files/Assets.xcassets/travel.imageset/travel.jpg
+recommendationsApp/Supporting Files/Assets.xcassets/Screen Shot 2018-07-30 at 5.52.01 PM.imageset/Screen Shot 2018-07-30 at 5.52.01 PM.png
