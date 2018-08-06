@@ -14,10 +14,12 @@ class List {
 	var recommendations: [Recommendation]
 	let category: String
 	let referencingId: String
+	var isPrivate: Bool
 	
-	init(recommendations: [Recommendation], category: String, listId: String) {
+	init(recommendations: [Recommendation], category: String, listId: String, isPrivate: Bool) {
 		self.recommendations = recommendations
 		self.category = category
 		self.referencingId = listId
+		self.isPrivate = isPrivate
 	}
 }

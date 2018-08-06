@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - Cosmos (16.0.0)
   - FBSDKCoreKit (4.34.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.34.0):
@@ -44,29 +45,29 @@ PODS:
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GTMSessionFetcher/Core (1.1.15)
-  - IGListKit (3.4.0):
-    - IGListKit/Default (= 3.4.0)
-  - IGListKit/Default (3.4.0):
-    - IGListKit/Diffing
-  - IGListKit/Diffing (3.4.0)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - XLActionController (4.0.1):
+    - XLActionController/Core (= 4.0.1)
+  - XLActionController/Core (4.0.1)
 
 DEPENDENCIES:
+  - Cosmos
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - FirebaseUI/Auth
   - FirebaseUI/Facebook
-  - IGListKit
+  - XLActionController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
+    - Cosmos
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -78,12 +79,13 @@ SPEC REPOS:
     - FirebaseUI
     - GoogleToolboxForMac
     - GTMSessionFetcher
-    - IGListKit
     - leveldb-library
     - nanopb
+    - XLActionController
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
   FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
   FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
   Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
@@ -95,10 +97,10 @@ SPEC CHECKSUMS:
   FirebaseUI: 5d97d3d5d6a019fc960eb573ea6ce9fb8c310669
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
-  IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  XLActionController: 007868251c0eed70d649d06c1625259b73b3a600
 
-PODFILE CHECKSUM: 330603d066b53a6b97577f13b8adc218a9b4b8ca
+PODFILE CHECKSUM: 27dfd32661bc88fc865bf082a48458023c7d7e4a
 
 COCOAPODS: 1.5.3

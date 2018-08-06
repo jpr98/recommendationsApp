@@ -26,6 +26,22 @@ class MyListsViewController: UIViewController {
 		UIImage(named: "bksncofee"),
 		UIImage(named: "travel"),
 		UIImage(named: "course"),
+		UIImage(named: "retail"),
+		UIImage(named: "bksncofee"),
+		UIImage(named: "travel"),
+		UIImage(named: "course"),
+		UIImage(named: "retail"),
+		UIImage(named: "bksncofee"),
+		UIImage(named: "travel"),
+		UIImage(named: "course"),
+		UIImage(named: "retail"),
+		UIImage(named: "bksncofee"),
+		UIImage(named: "travel"),
+		UIImage(named: "course"),
+		UIImage(named: "retail"),
+		UIImage(named: "bksncofee"),
+		UIImage(named: "travel"),
+		UIImage(named: "course"),
 		UIImage(named: "retail")
 	]
 	
@@ -42,21 +58,53 @@ class MyListsViewController: UIViewController {
 		
 		collectionView.allowsMultipleSelection = true
 		setupLayout()
+		//setSelecting()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		//super.viewWillDisappear(animated)
+		self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+		setSelecting()
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		addButton.alpha = 1
+		//setSelecting()
+		dismiss(animated: animated, completion: nil)
 	}
 	
 	func setupLayout() {
 		let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		layout.sectionInset = UIEdgeInsetsMake(12, 8, 5, 8)
-		layout.minimumInteritemSpacing = 4
-		layout.itemSize = CGSize(width: (self.collectionView.frame.size.width) / 2, height: 80)
+		layout.minimumInteritemSpacing = 7
+		layout.itemSize = CGSize(width: (self.collectionView.frame.size.width) / 2.2, height: 80)
 		
-		addButton.layer.masksToBounds = true
+		addButton.alpha = 1
+		addButton.layer.masksToBounds = false
 		addButton.layer.cornerRadius = 0.5 * addButton.bounds.size.width
+		addButton.layer.shadowRadius = 5
+		addButton.layer.shadowColor = UIColor.black.cgColor
+		addButton.layer.shadowOpacity = 0.75
+		addButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
 		
-		shareButton.layer.masksToBounds = true
+		shareButton.layer.masksToBounds = false
 		shareButton.layer.cornerRadius = 0.5 * shareButton.bounds.size.width
+		shareButton.layer.shadowRadius = 5
+		shareButton.layer.shadowColor = UIColor.black.cgColor
+		shareButton.layer.shadowOpacity = 0.75
+		shareButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
 		
 		deleteButton.alpha = 0
+	}
+	
+	func setSelecting() {
+		selecting = false
+		collectionView.allowsMultipleSelection = selecting
+		collectionView.allowsSelection = !selecting
+		selectButton.setTitle("Select", for: .normal)
+		deleteButton.alpha = 0
+		
 	}
 	
 	// MARK: Buttons
@@ -132,6 +180,9 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 		cell.layer.borderColor = UIColor.black.cgColor
 		cell.layer.masksToBounds = true
 		cell.layer.cornerRadius = 9.0
+		cell.layer.shadowColor = UIColor.black.cgColor
+		cell.layer.shadowRadius = 20
+		cell.layer.shadowOpacity = 0.5
 		//		cell.backgroundImage.image = cell.backgroundImage.image?.tint(UIColor(red: 57, green: 198, blue: 20, alpha: 0.5))
 		
 		// selection

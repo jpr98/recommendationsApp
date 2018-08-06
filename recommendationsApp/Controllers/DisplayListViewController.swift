@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class DisplayListViewController: UIViewController {
 
@@ -17,9 +18,9 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var listCatgoryLabel: UILabel!
 	@IBOutlet weak var darkenView: UIView!
 	@IBOutlet weak var optionsButton: UIButton!
+
 	
-	
-	var list = List(recommendations: [], category: "", listId: "")
+	var list = List(recommendations: [], category: "", listId: "", isPrivate: false)
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +28,27 @@ class DisplayListViewController: UIViewController {
 		// set image of list
 		imageView.image = UIImage(named:"bksncofee")
 		// set title of list
-		listCatgoryLabel.text = list.category
+		if list.isPrivate {
+			listCatgoryLabel.text = list.category + ""
+		} else {
+			listCatgoryLabel.text = list.category
+		}
 		
 		// think about card shadow
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
 		
-		addButton.layer.masksToBounds = true
-		addButton.layer.cornerRadius = addButton.bounds.size.width * 0.5
+		addButton.layer.masksToBounds = false
+		addButton.layer.cornerRadius = 0.5 * addButton.bounds.size.width
+		addButton.layer.shadowRadius = 5
+		addButton.layer.shadowColor = UIColor.black.cgColor
+		addButton.layer.shadowOpacity = 0.75
+		addButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
 		
 		tableView.delegate = self
 		tableView.dataSource = self
+		
+		tableView.tableFooterView = UIView()
 		
 		// tap surrounding view to dismiss
 		let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -45,14 +56,19 @@ class DisplayListViewController: UIViewController {
 		darkenView.isUserInteractionEnabled = true
     }
 	
+	override func viewWillDisappear(_ animated: Bool) {
+		//super.viewWillDisappear(animated)
+		self.dismiss(animated: animated, completion: nil)
+	}
+	
 	@objc func handleTap(_ sender: UITapGestureRecognizer) {
 		performSegue(withIdentifier: Constants.SegueIdentifier.backToMyLists, sender: (Any).self)
 	}
 	
 	@IBAction func addButtonTapped(_ sender: UIButton) {
 		addButton.alpha = 0
-		ListService.showSpecificList(list) { (lis) in
-			print(lis)
+		ListService.showSpecificList(list) { (list) in
+			print(list)
 		}
 		performSegue(withIdentifier: Constants.SegueIdentifier.addToList, sender: (Any).self)
 	}
@@ -89,8 +105,18 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 		let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifier.RecommendationCell, for: indexPath) as! DisplayListTableViewCell
 		cell.titleTextField.text = list.recommendations[indexPath.item].title
 		cell.descriptionTextField.text = list.recommendations[indexPath.item].description
+		cell.ratingControl.rating = Double(list.recommendations[indexPath.item].rating)
 		
 		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			ListService.delete(recommendation: list.recommendations[indexPath.item], from: list)
+			list.recommendations.remove(at: indexPath.row)
+			self.tableView.deleteRows(at: [indexPath], with: .automatic)
+			
+		}
 	}
 }
 

@@ -14,13 +14,24 @@ class CreateListViewController: UIViewController {
 	@IBOutlet weak var createButton: UIButton!
 	@IBOutlet weak var cancelButton: UIButton!
 	@IBOutlet weak var cardView: UIView!
+	@IBOutlet weak var privateSwitch: UISwitch!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
+		createButton.layer.cornerRadius = 6
+		
+		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+		tap.cancelsTouchesInView = false
+		self.view.addGestureRecognizer(tap)
 
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.dismiss(animated: animated, completion: nil)
 	}
 	
 	// this can be deleted because of prepare for segue function below does action when button tapped
@@ -33,7 +44,7 @@ class CreateListViewController: UIViewController {
 		
 		switch identifier {
 		case "create":
-			ListService.create(category: categoryTextField.text!)
+			ListService.create(category: categoryTextField.text!, isPrivate: privateSwitch.isOn)
 			print("list created?")
 		case "cancel":
 			print("create list canceled")

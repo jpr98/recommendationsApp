@@ -26,6 +26,7 @@ struct Constants {
 	struct CellIdentifier {
 		static let MyListCell = "MyListCell"
 		static let RecommendationCell = "RecommendationCell"
+		static let userCell = "userCell"
 	}
 	
 }

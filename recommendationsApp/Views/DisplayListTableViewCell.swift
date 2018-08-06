@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+import Cosmos
 class DisplayListTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var titleTextField: UITextField!
 	@IBOutlet weak var descriptionTextField: UITextField!
-	
+	@IBOutlet weak var ratingControl: CosmosView!
 }
 

@@ -13,6 +13,7 @@ class User: Codable {
 	// MARK: Properties
 	let uid: String
 	let username: String
+	var isFollowed = false
 	
 	// MARK: Singleton
 	private static var _current: User?
