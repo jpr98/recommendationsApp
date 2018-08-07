@@ -367,7 +367,7 @@
                                         </constraints>
                                     </stackView>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search username" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ya-Yd-ych">
-                                        <rect key="frame" x="0.0" y="143" width="344" height="56"/>
+                                        <rect key="frame" x="16" y="143" width="312" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -375,18 +375,18 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bll-f3-dyh">
-                                        <rect key="frame" x="8" y="199.33333333333331" width="328" height="182.66666666666669"/>
+                                        <rect key="frame" x="20" y="199.33333333333331" width="304" height="182.66666666666669"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="usernameCell" id="5Pe-FF-mLY" customClass="UsernameSearchTableViewCell" customModule="recommendationsApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="328" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="304" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Pe-FF-mLY" id="Y4c-CG-VXh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="328" height="43.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="304" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-6a-iI2">
-                                                            <rect key="frame" x="25" y="11" width="160" height="22"/>
+                                                            <rect key="frame" x="21" y="11" width="160" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="160" id="hRS-ac-y2N"/>
                                                             </constraints>
@@ -395,7 +395,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpr-jf-yuc">
-                                                            <rect key="frame" x="278" y="0.0" width="42" height="44"/>
+                                                            <rect key="frame" x="252" y="0.0" width="42" height="44"/>
                                                             <state key="normal" title="select"/>
                                                             <connections>
                                                                 <action selector="selectUser:" destination="xCr-jP-92j" eventType="touchUpInside" id="0VS-ap-rVX"/>
@@ -408,7 +408,7 @@
                                                         <constraint firstItem="cpr-jf-yuc" firstAttribute="top" secondItem="Y4c-CG-VXh" secondAttribute="top" id="ag5-Mn-hVf"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="LPB-6a-iI2" secondAttribute="bottom" id="cgc-J5-Noh"/>
                                                         <constraint firstItem="LPB-6a-iI2" firstAttribute="top" secondItem="Y4c-CG-VXh" secondAttribute="topMargin" id="hxt-4o-dAW"/>
-                                                        <constraint firstAttribute="trailing" secondItem="cpr-jf-yuc" secondAttribute="trailing" constant="8" id="r6h-Y4-M9Z"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cpr-jf-yuc" secondAttribute="trailing" constant="10" id="r6h-Y4-M9Z"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -419,7 +419,7 @@
                                         </prototypes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UUb-XI-Vxq" userLabel="Settings Stack">
-                                        <rect key="frame" x="25" y="407" width="299" height="30"/>
+                                        <rect key="frame" x="25" y="407" width="297" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wk-jB-fg4">
                                                 <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="30"/>
@@ -428,14 +428,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Share title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cBn-Eq-oQs">
-                                                <rect key="frame" x="41.666666666666657" y="0.0" width="257.33333333333337" height="30"/>
+                                                <rect key="frame" x="41.666666666666671" y="0.0" width="255.33333333333331" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected usernames" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfz-cE-NbH">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected usernames" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfz-cE-NbH">
                                         <rect key="frame" x="30" y="249.00000000000003" width="284" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -444,17 +444,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="0Ya-Yd-ych" secondAttribute="trailing" id="4kG-ka-cy7"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Ya-Yd-ych" secondAttribute="trailing" constant="16" id="4kG-ka-cy7"/>
                                     <constraint firstItem="o8J-bk-bzO" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="25" id="BWk-Za-IXK"/>
                                     <constraint firstAttribute="trailing" secondItem="o8J-bk-bzO" secondAttribute="trailing" constant="25" id="CCR-jS-xGA"/>
                                     <constraint firstItem="Rfz-cE-NbH" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="30" id="GlC-bX-WES"/>
                                     <constraint firstItem="oJR-UR-ZwB" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="20" id="IQh-fh-q9E"/>
-                                    <constraint firstAttribute="trailing" secondItem="bll-f3-dyh" secondAttribute="trailing" constant="8" id="JlZ-Ov-7FO"/>
+                                    <constraint firstAttribute="trailing" secondItem="bll-f3-dyh" secondAttribute="trailing" constant="20" id="JlZ-Ov-7FO"/>
                                     <constraint firstItem="UUb-XI-Vxq" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="25" id="KiJ-8J-hrd"/>
                                     <constraint firstItem="oJR-UR-ZwB" firstAttribute="top" secondItem="OQs-Ht-up3" secondAttribute="top" constant="48" id="Ndw-CT-HHN"/>
                                     <constraint firstItem="Rfz-cE-NbH" firstAttribute="top" secondItem="0Ya-Yd-ych" secondAttribute="bottom" constant="50" id="PgV-wJ-fHs"/>
-                                    <constraint firstAttribute="trailing" secondItem="UUb-XI-Vxq" secondAttribute="trailing" constant="20" id="Tq0-v7-9gK"/>
-                                    <constraint firstItem="0Ya-Yd-ych" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" id="ber-bM-Hul"/>
+                                    <constraint firstAttribute="trailing" secondItem="UUb-XI-Vxq" secondAttribute="trailing" constant="22" id="Tq0-v7-9gK"/>
+                                    <constraint firstItem="0Ya-Yd-ych" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="16" id="ber-bM-Hul"/>
                                     <constraint firstAttribute="bottom" secondItem="o8J-bk-bzO" secondAttribute="bottom" constant="10" id="cQ9-pq-0Zs"/>
                                     <constraint firstItem="o8J-bk-bzO" firstAttribute="top" secondItem="UUb-XI-Vxq" secondAttribute="bottom" constant="35" id="dNb-TI-etQ"/>
                                     <constraint firstAttribute="trailing" secondItem="oJR-UR-ZwB" secondAttribute="trailing" constant="20" id="dPJ-6t-7HT"/>
@@ -462,7 +462,7 @@
                                     <constraint firstItem="UUb-XI-Vxq" firstAttribute="top" secondItem="bll-f3-dyh" secondAttribute="bottom" constant="25" id="kd3-nG-CK3"/>
                                     <constraint firstItem="0Ya-Yd-ych" firstAttribute="top" secondItem="oJR-UR-ZwB" secondAttribute="bottom" constant="15" id="rCC-YI-fUU"/>
                                     <constraint firstAttribute="trailing" secondItem="Rfz-cE-NbH" secondAttribute="trailing" constant="30" id="xJv-sI-0eb"/>
-                                    <constraint firstItem="bll-f3-dyh" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="8" id="yvQ-0y-4Yy"/>
+                                    <constraint firstItem="bll-f3-dyh" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="20" id="yvQ-0y-4Yy"/>
                                 </constraints>
                             </view>
                         </subviews>

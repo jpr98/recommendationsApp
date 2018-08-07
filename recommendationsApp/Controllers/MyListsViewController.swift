@@ -58,11 +58,10 @@ class MyListsViewController: UIViewController {
 		
 		collectionView.allowsMultipleSelection = true
 		setupLayout()
-		//setSelecting()
+
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
-		//super.viewWillDisappear(animated)
 		self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
 		setSelecting()
 	}
@@ -70,7 +69,6 @@ class MyListsViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		addButton.alpha = 1
-		//setSelecting()
 		dismiss(animated: animated, completion: nil)
 	}
 	
@@ -129,7 +127,6 @@ class MyListsViewController: UIViewController {
 	}
 	
 	@IBAction func deleteButtonTapped(_ sender: UIButton) {
-		// delete selected cells
 		ListService.deleteLists(lists: selectedArray.map { myLists[$0.item] })
 		ListService.showAllLists { (lists) in
 			self.myLists = lists
@@ -158,12 +155,6 @@ class MyListsViewController: UIViewController {
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//		if segue.identifier == Constants.SegueIdentifier.showList,
-//			let destination = segue.destination as? DisplayListViewController,
-//			let selected = collectionView.indexPathsForSelectedItems{
-//			let listToShow = selected[0].item
-//			destination.list = myLists[listToShow]
-//		}
 		guard let identifier = segue.identifier else { return }
 		switch identifier {
 		case Constants.SegueIdentifier.showList:
