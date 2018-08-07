@@ -18,10 +18,12 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var listCatgoryLabel: UILabel!
 	@IBOutlet weak var darkenView: UIView!
 	@IBOutlet weak var optionsButton: UIButton!
-
+	@IBOutlet weak var selectButton: UIButton!
+	
 	
 	var list = List(recommendations: [], category: "", listId: "", isPrivate: false)
 	
+	// MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -65,6 +67,10 @@ class DisplayListViewController: UIViewController {
 		performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromDisplay, sender: (Any).self)
 	}
 	
+	// MARK: IBActions
+	@IBAction func selectButtonTapped(_ sender: UIButton) {
+	}
+	
 	@IBAction func addButtonTapped(_ sender: UIButton) {
 		addButton.alpha = 0
 		ListService.showSpecificList(list) { (list) in
@@ -73,6 +79,7 @@ class DisplayListViewController: UIViewController {
 		performSegue(withIdentifier: Constants.SegueIdentifier.addToList, sender: (Any).self)
 	}
 	
+	// MARK: Segues
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard let identifier = segue.identifier else { return }
 		
@@ -81,6 +88,12 @@ class DisplayListViewController: UIViewController {
 			let destination = segue.destination as! AddRecommendationToListViewController
 			destination.listAutoId = list.referencingId
 			print("add to list button tapped")
+		case Constants.SegueIdentifier.updateInList:
+			guard let indexPath = tableView.indexPathForSelectedRow else { return }
+			let destination = segue.destination as! AddRecommendationToListViewController
+			destination.listAutoId = list.referencingId
+			destination.recommendationToUpdate = list.recommendations[indexPath.row]
+			print("update in list, cell tapped")
 		case Constants.SegueIdentifier.backToMyListsFromDisplay:
 			print("back to my lists segue")
 		default:
@@ -96,6 +109,8 @@ class DisplayListViewController: UIViewController {
 		}
 	}
 }
+
+// MARK: TableView
 extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return list.recommendations.count
@@ -103,8 +118,8 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifier.RecommendationCell, for: indexPath) as! DisplayListTableViewCell
-		cell.titleTextField.text = list.recommendations[indexPath.item].title
-		cell.descriptionTextField.text = list.recommendations[indexPath.item].description
+		cell.titleLabel.text = list.recommendations[indexPath.item].title
+		cell.descriptionLabel.text = list.recommendations[indexPath.item].description
 		cell.ratingControl.rating = Double(list.recommendations[indexPath.item].rating)
 		
 		return cell
@@ -118,6 +133,11 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 			
 		}
 	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		performSegue(withIdentifier: Constants.SegueIdentifier.updateInList, sender: (Any).self)
+	}
+	
 }
 
 

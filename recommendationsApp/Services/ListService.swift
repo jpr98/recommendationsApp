@@ -52,6 +52,19 @@ struct ListService {
 		}
 	}
 	
+	// update in list
+	static func updateInList(listId: String, recommendation: Recommendation) {
+		let currentUser = User.current
+		let ref = Database.database().reference().child("lists").child(currentUser.uid).child(listId).child("recommendations").child(recommendation.referencingId)
+		let values: [String: Any] = ["title": recommendation.title, "rating": recommendation.rating, "description": recommendation.description]
+		ref.updateChildValues(values) { (error, ref) in
+			if let error = error {
+				assertionFailure(error.localizedDescription)
+				return
+			}
+		}
+	}
+	
 	// delete from list (later)
 	static func delete(recommendation: Recommendation, from list: List) {
 		let currentUser = User.current

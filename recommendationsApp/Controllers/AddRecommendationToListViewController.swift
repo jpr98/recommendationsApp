@@ -20,6 +20,7 @@ class AddRecommendationToListViewController: UIViewController, UITextViewDelegat
 	@IBOutlet weak var cardView: UIView!
 	
 	var listAutoId: String?
+	var recommendationToUpdate: Recommendation?
 	
 	// MARK: VC LifeCycle
 	override func viewDidLoad() {
@@ -27,12 +28,8 @@ class AddRecommendationToListViewController: UIViewController, UITextViewDelegat
 		
 		titleTextField.delegate = self
 		
-		cardView.layer.masksToBounds = true
-		cardView.layer.cornerRadius = 8
-		
-		addButton.layer.cornerRadius = 6
-		
-		descriptionTextViewSetUp()
+		setUp()
+		checkIfUpdate()
 		
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
 		tap.cancelsTouchesInView = false
@@ -42,6 +39,23 @@ class AddRecommendationToListViewController: UIViewController, UITextViewDelegat
 	override func viewWillDisappear(_ animated: Bool) {
 		self.dismiss(animated: animated, completion: nil)
 		super.dismiss(animated: animated, completion: nil)
+	}
+	
+	func setUp() {
+		cardView.layer.masksToBounds = true
+		cardView.layer.cornerRadius = 8
+		addButton.layer.cornerRadius = 6
+	}
+	
+	func checkIfUpdate() {
+		if let recommendation = recommendationToUpdate {
+			titleTextField.text = recommendation.title
+			descriptionTextView.text = recommendation.description
+			ratingControl.rating = Double(recommendation.rating)
+			addButton.setTitle("Save", for: .normal)
+		} else {
+			descriptionTextViewSetUp()
+		}
 	}
 	
 	// MARK: DescriptionTextView Delegate Placeholder
@@ -73,11 +87,15 @@ class AddRecommendationToListViewController: UIViewController, UITextViewDelegat
 	// MARK: Segues
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard let identifier = segue.identifier else { return }
+		guard let listAutoId = listAutoId else { return }
 		
 		switch identifier {
-		case Constants.SegueIdentifier.confirmAdd:
-			ListService.addToList(categoryAutoId: listAutoId!, title: titleTextField.text!, rating: Int(ratingControl.rating), description: descriptionTextView.text)
+		case Constants.SegueIdentifier.confirmAdd where recommendationToUpdate == nil:
+			ListService.addToList(categoryAutoId: listAutoId, title: titleTextField.text!, rating: Int(ratingControl.rating), description: descriptionTextView.text)
 			print("confirm add to list")
+		case Constants.SegueIdentifier.confirmAdd where recommendationToUpdate != nil:
+			ListService.updateInList(listId: listAutoId, recommendation: Recommendation(title: titleTextField.text!, rating: Int(ratingControl.rating), description: descriptionTextView.text!, referencingId: (recommendationToUpdate?.referencingId)!))
+			print("saved changes in recommendation")
 		case "cancelAdd":
 			print("canceled add to list")
 		default:

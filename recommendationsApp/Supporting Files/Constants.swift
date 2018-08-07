@@ -19,6 +19,7 @@ struct Constants {
 		static let showList = "showList"
 		static let addList = "addList"
 		static let addToList = "addToList"
+		static let updateInList = "updateInList"
 		static let confirmAdd = "confirmAdd"
 		static let backToMyListsFromDisplay = "backToMyListsFromDisplay"
 		static let toShare = "toShare"
