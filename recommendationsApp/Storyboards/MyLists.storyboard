@@ -396,6 +396,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpr-jf-yuc">
                                                             <rect key="frame" x="278" y="0.0" width="42" height="44"/>
                                                             <state key="normal" title="select"/>
+                                                            <connections>
+                                                                <action selector="selectUser:" destination="xCr-jP-92j" eventType="touchUpInside" id="0VS-ap-rVX"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -431,16 +434,24 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected usernames" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfz-cE-NbH">
+                                        <rect key="frame" x="30" y="249.00000000000003" width="284" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0Ya-Yd-ych" secondAttribute="trailing" id="4kG-ka-cy7"/>
                                     <constraint firstItem="o8J-bk-bzO" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="25" id="BWk-Za-IXK"/>
                                     <constraint firstAttribute="trailing" secondItem="o8J-bk-bzO" secondAttribute="trailing" constant="25" id="CCR-jS-xGA"/>
+                                    <constraint firstItem="Rfz-cE-NbH" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="30" id="GlC-bX-WES"/>
                                     <constraint firstItem="oJR-UR-ZwB" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="20" id="IQh-fh-q9E"/>
                                     <constraint firstAttribute="trailing" secondItem="bll-f3-dyh" secondAttribute="trailing" constant="8" id="JlZ-Ov-7FO"/>
                                     <constraint firstItem="UUb-XI-Vxq" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="25" id="KiJ-8J-hrd"/>
                                     <constraint firstItem="oJR-UR-ZwB" firstAttribute="top" secondItem="OQs-Ht-up3" secondAttribute="top" constant="48" id="Ndw-CT-HHN"/>
+                                    <constraint firstItem="Rfz-cE-NbH" firstAttribute="top" secondItem="0Ya-Yd-ych" secondAttribute="bottom" constant="50" id="PgV-wJ-fHs"/>
                                     <constraint firstAttribute="trailing" secondItem="UUb-XI-Vxq" secondAttribute="trailing" constant="20" id="Tq0-v7-9gK"/>
                                     <constraint firstItem="0Ya-Yd-ych" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" id="ber-bM-Hul"/>
                                     <constraint firstAttribute="bottom" secondItem="o8J-bk-bzO" secondAttribute="bottom" constant="10" id="cQ9-pq-0Zs"/>
@@ -449,6 +460,7 @@
                                     <constraint firstItem="bll-f3-dyh" firstAttribute="top" secondItem="0Ya-Yd-ych" secondAttribute="bottom" id="jrv-rz-Kxb"/>
                                     <constraint firstItem="UUb-XI-Vxq" firstAttribute="top" secondItem="bll-f3-dyh" secondAttribute="bottom" constant="25" id="kd3-nG-CK3"/>
                                     <constraint firstItem="0Ya-Yd-ych" firstAttribute="top" secondItem="oJR-UR-ZwB" secondAttribute="bottom" constant="15" id="rCC-YI-fUU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rfz-cE-NbH" secondAttribute="trailing" constant="30" id="xJv-sI-0eb"/>
                                     <constraint firstItem="bll-f3-dyh" firstAttribute="leading" secondItem="OQs-Ht-up3" secondAttribute="leading" constant="8" id="yvQ-0y-4Yy"/>
                                 </constraints>
                             </view>
@@ -471,6 +483,7 @@
                         <outlet property="darkenView" destination="ImP-Og-ILY" id="ExN-VC-pFc"/>
                         <outlet property="searchBar" destination="0Ya-Yd-ych" id="1dn-yT-cxl"/>
                         <outlet property="searchDisplayController" destination="AVi-BM-XDR" id="6Iw-17-Kgb"/>
+                        <outlet property="selectedUsernamesLabel" destination="Rfz-cE-NbH" id="eoo-C7-Sar"/>
                         <outlet property="shareButton" destination="dtz-cQ-DPz" id="vAj-QB-eln"/>
                         <outlet property="shareTitle" destination="cBn-Eq-oQs" id="FNW-8Y-wJE"/>
                         <outlet property="usernamesTableView" destination="bll-f3-dyh" id="LY8-z6-wQD"/>

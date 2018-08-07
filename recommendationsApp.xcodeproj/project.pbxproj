@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B38F99E21112E060007CFA2 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38F99D21112E060007CFA2 /* UIImage+Utility.swift */; };
 		0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */; };
+		0B56587C2119095B00EBA7CD /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B56587B2119095B00EBA7CD /* ShareService.swift */; };
 		0B600572210BA80F004CEA83 /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B600571210BA80F004CEA83 /* ListService.swift */; };
 		0B600574210F9052004CEA83 /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B600573210F9052004CEA83 /* CreateListViewController.swift */; };
 		0B600576210F933C004CEA83 /* AddRecommendationToListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B600575210F933C004CEA83 /* AddRecommendationToListViewController.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		0B38F99D21112E060007CFA2 /* UIImage+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
 		0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListTableViewCell.swift; sourceTree = "<group>"; };
+		0B56587B2119095B00EBA7CD /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
 		0B600571210BA80F004CEA83 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		0B600573210F9052004CEA83 /* CreateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
 		0B600575210F933C004CEA83 /* AddRecommendationToListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecommendationToListViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				0B7F0E7D2108F18900385E27 /* UserService.swift */,
 				0B600571210BA80F004CEA83 /* ListService.swift */,
+				0B56587B2119095B00EBA7CD /* ShareService.swift */,
 				0BB2B6B02113804E00BE768E /* FollowService.swift */,
 			);
 			path = Services;
@@ -386,6 +389,7 @@
 			files = (
 				0B7F0E872109120F00385E27 /* Recommendation.swift in Sources */,
 				0B7F0E7C2108EE3700385E27 /* Constants.swift in Sources */,
+				0B56587C2119095B00EBA7CD /* ShareService.swift in Sources */,
 				0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */,
 				0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */,
 				0B7F0E7A2108ED2B00385E27 /* CreateUsernameViewController.swift in Sources */,

@@ -173,12 +173,13 @@ class MyListsViewController: UIViewController {
 				destination.list = myLists[listToShow]
 			}
 		case Constants.SegueIdentifier.toShare:
-			print("to share")
-//			if let destination = segue.destination as? ShareViewController {
-//				let shareStack = collectionView.indexPathsForSelectedItems {
-//					destination.shareStack = shareStack
-//				}
-//			}
+			var shareStack: [List] = []
+			if let destination = segue.destination as? ShareViewController {
+				for indexPath in selectedArray {
+					shareStack.append(myLists[indexPath.item])
+				}
+				destination.shareStack = shareStack
+			}
 		default:
 			print("unexpected segue identifier")
 		}

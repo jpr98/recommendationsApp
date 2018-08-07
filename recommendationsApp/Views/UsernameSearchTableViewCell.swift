@@ -12,5 +12,6 @@ class UsernameSearchTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var usernameLabel: UILabel!
 	@IBOutlet weak var selectButton: UIButton!
+	var isSharing: Bool = false
 	
 }

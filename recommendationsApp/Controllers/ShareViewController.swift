@@ -17,10 +17,13 @@ class ShareViewController: UIViewController {
 	@IBOutlet weak var cancelButton: UIButton!
 	@IBOutlet weak var cardView: UIView!
 	@IBOutlet weak var darkenView: UIView!
+	@IBOutlet weak var selectedUsernamesLabel: UILabel!
 	
 	var allUsers: [User] = []
 	var filteredUsers: [User] = []
-	var shareStack: [Any] = []
+	var selectedUsers: [User] = []
+	var usernames: [String] = [] // check to see if necesary
+	var shareStack: [List] = []
 	
 	// MARK: ViewDidLoad
 	override func viewDidLoad() {
@@ -31,6 +34,9 @@ class ShareViewController: UIViewController {
 			self.usernamesTableView.reloadData()
 		}
 		
+		if shareStack.count == 0 {
+			shareButton.backgroundColor = UIColor.gray
+		}
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
 		shareButton.layer.cornerRadius = 6
@@ -42,6 +48,8 @@ class ShareViewController: UIViewController {
 		searchBar.delegate = self
 		shareTitle.delegate = self
 		
+		selectedUsernamesLabel.text = "Sharing with: "
+		
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
 		tap.cancelsTouchesInView = false
 		self.view.addGestureRecognizer(tap)
@@ -49,8 +57,31 @@ class ShareViewController: UIViewController {
 	
 	// MARK: Buttons actions
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
+		if shareStack.count > 0 {
+			print(selectedUsers)
+			ShareService.sendTo(users: selectedUsers, lists: shareStack) // this is temporary
+			performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromShare, sender: (Any).self)
+		}
 	}
+	
 	@IBAction func cancelButtonTapped(_ sender: UIButton) {
+	}
+	
+	@IBAction func selectUser(_ sender: UIButton) {
+		let cell = sender.superview?.superview as! UsernameSearchTableViewCell
+		if !cell.isSharing {
+			if let indexPath = usernamesTableView.indexPath(for: cell) {
+				selectedUsers.append(filteredUsers[indexPath.item])
+				cell.selectButton.setTitle("Deselect", for: .normal)
+				cell.isSharing = true
+			}
+		} else {
+			if usernamesTableView.indexPath(for: cell) != nil {
+				selectedUsers = selectedUsers.filter { $0.username != cell.usernameLabel.text }
+				cell.selectButton.setTitle("Select", for: .normal)
+				cell.isSharing = false
+			}
+		}
 	}
 	
 	// MARK: Segues
@@ -84,6 +115,7 @@ extension ShareViewController: UISearchBarDelegate {
 	}
 	
 	func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+		selectedUsernamesLabel.alpha = 0
 		usernamesTableView.alpha = 1
 	}
 	
@@ -93,6 +125,7 @@ extension ShareViewController: UISearchBarDelegate {
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		self.view.endEditing(true)
+		selectedUsernamesLabel.text = "Sharing with: \(usernames)"
 		usernamesTableView.alpha = 0
 	}
 }
