@@ -11,19 +11,18 @@ import UIKit
 class ShareViewController: UIViewController {
 	
 	@IBOutlet weak var searchBar: UISearchBar!
-	@IBOutlet weak var usernamesTableView: UITableView!
-	@IBOutlet weak var shareTitle: UITextField!
+	@IBOutlet weak var usernamesTableView: SelfSizedTableView!
+	@IBOutlet weak var shareTitleTextField: UITextField!
 	@IBOutlet weak var shareButton: UIButton!
 	@IBOutlet weak var cancelButton: UIButton!
 	@IBOutlet weak var cardView: UIView!
 	@IBOutlet weak var darkenView: UIView!
-	@IBOutlet weak var selectedUsernamesLabel: UILabel!
 	
 	var allUsers: [User] = []
 	var filteredUsers: [User] = []
 	var selectedUsers: [User] = []
 	var usernames: [String] = [] // check to see if necesary
-	var shareStack: [List] = []
+	var shareStack: [Any] = []
 	
 	// MARK: ViewDidLoad
 	override func viewDidLoad() {
@@ -36,6 +35,7 @@ class ShareViewController: UIViewController {
 		
 		if shareStack.count == 0 {
 			shareButton.backgroundColor = UIColor.gray
+			shareButton.isEnabled = false
 		}
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
@@ -44,11 +44,10 @@ class ShareViewController: UIViewController {
 		usernamesTableView.alpha = 0
 		usernamesTableView.delegate = self
 		usernamesTableView.dataSource = self
+		usernamesTableView.maxHeight = 160
 		
 		searchBar.delegate = self
-		shareTitle.delegate = self
-		
-		selectedUsernamesLabel.text = "Sharing with: "
+		shareTitleTextField.delegate = self
 		
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
 		tap.cancelsTouchesInView = false
@@ -57,9 +56,10 @@ class ShareViewController: UIViewController {
 	
 	// MARK: Buttons actions
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
-		if shareStack.count > 0 {
-			print(selectedUsers)
-			ShareService.sendTo(users: selectedUsers, lists: shareStack) // this is temporary
+		if (shareTitleTextField.text?.isEmpty)! {
+			shareTitleTextField.text = ""
+		} else if shareStack.count > 0 {
+			ShareService.send(to: selectedUsers, stack: shareStack, named: shareTitleTextField.text!)
 			performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromShare, sender: (Any).self)
 		}
 	}
@@ -115,7 +115,6 @@ extension ShareViewController: UISearchBarDelegate {
 	}
 	
 	func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-		selectedUsernamesLabel.alpha = 0
 		usernamesTableView.alpha = 1
 	}
 	
@@ -125,17 +124,31 @@ extension ShareViewController: UISearchBarDelegate {
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		self.view.endEditing(true)
-		selectedUsernamesLabel.text = "Sharing with: \(usernames)"
 		usernamesTableView.alpha = 0
 	}
 }
 //
 extension ShareViewController: UITextFieldDelegate {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		shareTitle.resignFirstResponder()
+		shareTitleTextField.resignFirstResponder()
 		return true
 	}
 	
+}
+
+class SelfSizedTableView: UITableView {
+	var maxHeight: CGFloat = UIScreen.main.bounds.size.height
+	
+	override func reloadData() {
+		super.reloadData()
+		self.invalidateIntrinsicContentSize()
+		self.layoutIfNeeded()
+	}
+	
+	override var intrinsicContentSize: CGSize {
+		let height = min(contentSize.height, maxHeight)
+		return CGSize(width: contentSize.width, height: height)
+	}
 }
 
 

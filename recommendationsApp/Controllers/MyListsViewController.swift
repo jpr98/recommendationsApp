@@ -18,7 +18,6 @@ class MyListsViewController: UIViewController {
 	@IBOutlet weak var shareButton: UIButton!
 	
 	var selecting: Bool = false
-	
 	var myLists: [List] = []
 	var selectedArray: [IndexPath] = []
 	
@@ -69,6 +68,7 @@ class MyListsViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		addButton.alpha = 1
+		shareButton.alpha = 1
 		dismiss(animated: animated, completion: nil)
 	}
 	
@@ -103,7 +103,7 @@ class MyListsViewController: UIViewController {
 		collectionView.allowsSelection = !selecting
 		selectButton.setTitle("Select", for: .normal)
 		deleteButton.alpha = 0
-		
+		shareButton.setTitle("Share", for: .normal)
 	}
 	
 	// MARK: Buttons
@@ -113,12 +113,18 @@ class MyListsViewController: UIViewController {
 			collectionView.allowsMultipleSelection = selecting
 			selectButton.setTitle("Done", for: .normal)
 			deleteButton.alpha = 1
+			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
 		} else {
 			selecting = false
 			collectionView.allowsMultipleSelection = selecting
 			selectButton.setTitle("Select", for: .normal)
 			selectedArray.removeAll()
 			deleteButton.alpha = 0
+			if SharingStack.toBeShared.count == 0 {
+				shareButton.setTitle("Share", for: .normal)
+			} else {
+				shareButton.setTitle("Share \(SharingStack.toBeShared.count)", for: .normal)
+			}
 			ListService.showAllLists { (lists) in
 				self.myLists = lists
 				self.collectionView.reloadData()
@@ -135,8 +141,16 @@ class MyListsViewController: UIViewController {
 	}
 	
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
-		performSegue(withIdentifier: Constants.SegueIdentifier.toShare, sender: (Any).self)
-		shareButton.alpha = 0
+		if selecting {
+			for indexPath in selectedArray {
+				SharingStack.toBeShared.append(myLists[indexPath.item])
+			}
+			shareButton.setTitle("Share \(SharingStack.toBeShared.count)", for: .normal)
+		} else {
+			performSegue(withIdentifier: Constants.SegueIdentifier.toShare, sender: (Any).self)
+			shareButton.alpha = 0
+			SharingStack.toBeShared = []
+		}
 	}
 	
 	@IBAction func addButtonTapped(_ sender: Any) {
@@ -148,6 +162,11 @@ class MyListsViewController: UIViewController {
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		addButton.alpha = 1
 		shareButton.alpha = 1
+		if SharingStack.toBeShared.count > 0 {
+			shareButton.setTitle("Share \(SharingStack.toBeShared.count)", for: .normal)
+		} else {
+			shareButton.setTitle("Share", for: .normal)
+		}
 		ListService.showAllLists { (lists) in
 			self.myLists = lists
 			self.collectionView.reloadData()
@@ -164,12 +183,8 @@ class MyListsViewController: UIViewController {
 				destination.list = myLists[listToShow]
 			}
 		case Constants.SegueIdentifier.toShare:
-			var shareStack: [List] = []
 			if let destination = segue.destination as? ShareViewController {
-				for indexPath in selectedArray {
-					shareStack.append(myLists[indexPath.item])
-				}
-				destination.shareStack = shareStack
+				destination.shareStack = SharingStack.toBeShared
 			}
 		default:
 			print("unexpected segue identifier")
@@ -226,8 +241,9 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 			cell.hasBeenSelected = true
 		} else {
 			performSegue(withIdentifier: Constants.SegueIdentifier.showList, sender: (Any).self)
-			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
 				self.addButton.alpha = 0
+				self.shareButton.alpha = 0
 			}
 		}
 	}
@@ -241,6 +257,10 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 		cell.layer.borderColor = UIColor.black.cgColor
 		cell.hasBeenSelected = false
 	}
+}
+
+struct SharingStack {
+	static var toBeShared: [Any] = []
 }
 
 

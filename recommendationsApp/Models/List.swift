@@ -15,6 +15,7 @@ class List {
 	let category: String
 	let referencingId: String
 	var isPrivate: Bool
+	var from: String?
 	
 	init(recommendations: [Recommendation], category: String, listId: String, isPrivate: Bool) {
 		self.recommendations = recommendations

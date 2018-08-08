@@ -13,6 +13,7 @@ class DisplayListViewController: UIViewController {
 
 	@IBOutlet weak var cardView: UIView!
 	@IBOutlet weak var addButton: UIButton!
+	@IBOutlet weak var shareButton: UIButton!
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var listCatgoryLabel: UILabel!
@@ -20,6 +21,8 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var optionsButton: UIButton!
 	@IBOutlet weak var selectButton: UIButton!
 	
+	var isSelecting: Bool = false
+	var selectedArray: [IndexPath] = []
 	
 	var list = List(recommendations: [], category: "", listId: "", isPrivate: false)
 	
@@ -36,6 +39,37 @@ class DisplayListViewController: UIViewController {
 			listCatgoryLabel.text = list.category
 		}
 		
+		tableView.delegate = self
+		tableView.dataSource = self
+		tableView.tableFooterView = UIView()
+		isSelecting = false
+		
+		setup()
+		
+		// tap surrounding view to dismiss
+		let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+		darkenView.addGestureRecognizer(tap)
+		darkenView.isUserInteractionEnabled = true
+    }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if SharingStack.toBeShared.count > 0 {
+			shareButton.setTitle("Share \(SharingStack.toBeShared.count)", for: .normal)
+		} else {
+			shareButton.setTitle("Share", for: .normal)
+		}
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		//super.viewWillDisappear(animated)
+		self.dismiss(animated: animated, completion: nil)
+	}
+	
+	@objc func handleTap(_ sender: UITapGestureRecognizer) {
+		performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromDisplay, sender: (Any).self)
+	}
+	
+	func setup() {
 		// think about card shadow
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
@@ -47,28 +81,33 @@ class DisplayListViewController: UIViewController {
 		addButton.layer.shadowOpacity = 0.75
 		addButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
 		
-		tableView.delegate = self
-		tableView.dataSource = self
-		
-		tableView.tableFooterView = UIView()
-		
-		// tap surrounding view to dismiss
-		let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-		darkenView.addGestureRecognizer(tap)
-		darkenView.isUserInteractionEnabled = true
-    }
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		//super.viewWillDisappear(animated)
-		self.dismiss(animated: animated, completion: nil)
-	}
-	
-	@objc func handleTap(_ sender: UITapGestureRecognizer) {
-		performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromDisplay, sender: (Any).self)
+		shareButton.layer.masksToBounds = false
+		shareButton.layer.cornerRadius = 0.5 * shareButton.bounds.size.width
+		shareButton.layer.shadowRadius = 5
+		shareButton.layer.shadowColor = UIColor.black.cgColor
+		shareButton.layer.shadowOpacity = 0.75
+		shareButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
 	}
 	
 	// MARK: IBActions
 	@IBAction func selectButtonTapped(_ sender: UIButton) {
+		if !isSelecting {
+			isSelecting = true
+			selectButton.setTitle("Done", for: .normal)
+			tableView.allowsMultipleSelection = isSelecting
+			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
+		} else {
+			isSelecting = false
+			selectButton.setTitle("Select", for: .normal)
+			tableView.allowsMultipleSelection = isSelecting
+			if SharingStack.toBeShared.count == 0 {
+				shareButton.setTitle("Share", for: .normal)
+			} else {
+				shareButton.setTitle("Share \(SharingStack.toBeShared.count)", for: .normal)
+			}
+			selectedArray = []
+			tableView.reloadData()
+		}
 	}
 	
 	@IBAction func addButtonTapped(_ sender: UIButton) {
@@ -77,6 +116,18 @@ class DisplayListViewController: UIViewController {
 			print(list)
 		}
 		performSegue(withIdentifier: Constants.SegueIdentifier.addToList, sender: (Any).self)
+	}
+	
+	@IBAction func shareButtonTapped(_ sender: UIButton) {
+		if isSelecting {
+			for indexPath in selectedArray {
+				SharingStack.toBeShared.append(list.recommendations[indexPath.row])
+			}
+			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
+		} else {
+			performSegue(withIdentifier: Constants.SegueIdentifier.toShareFromDisplay, sender: (Any).self)
+			SharingStack.toBeShared = []
+		}
 	}
 	
 	// MARK: Segues
@@ -96,6 +147,9 @@ class DisplayListViewController: UIViewController {
 			print("update in list, cell tapped")
 		case Constants.SegueIdentifier.backToMyListsFromDisplay:
 			print("back to my lists segue")
+		case Constants.SegueIdentifier.toShareFromDisplay:
+			let destination = segue.destination as! ShareViewController
+			destination.shareStack = SharingStack.toBeShared
 		default:
 			print("unexpected segue identifier")
 		}
@@ -122,6 +176,13 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 		cell.descriptionLabel.text = list.recommendations[indexPath.item].description
 		cell.ratingControl.rating = Double(list.recommendations[indexPath.item].rating)
 		
+		if selectedArray.contains(indexPath) {
+			cell.layer.backgroundColor = UIColor.blue.cgColor
+			cell.ratingControl.layer.backgroundColor = UIColor.blue.cgColor
+		} else {
+			cell.layer.backgroundColor = UIColor.white.cgColor
+			cell.ratingControl.layer.backgroundColor = UIColor.white.cgColor
+		}
 		return cell
 	}
 	
@@ -134,8 +195,29 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 		}
 	}
 	
+	// Selecting Cells
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		performSegue(withIdentifier: Constants.SegueIdentifier.updateInList, sender: (Any).self)
+		let cell = tableView.cellForRow(at: indexPath) as! DisplayListTableViewCell
+		if isSelecting {
+			if cell.hasBeenSelected {
+				deselect(indexPath: indexPath)
+				return 
+			}
+			selectedArray.append(indexPath)
+			tableView.reloadData()
+			cell.hasBeenSelected = true
+		} else {
+			performSegue(withIdentifier: Constants.SegueIdentifier.updateInList, sender: (Any).self)
+		}
+	}
+	
+	func deselect(indexPath: IndexPath) {
+		selectedArray = selectedArray.filter { $0 != indexPath }
+		tableView.reloadData()
+		let cell = tableView.cellForRow(at: indexPath) as! DisplayListTableViewCell
+		cell.hasBeenSelected = false
+		cell.layer.backgroundColor = UIColor.white.cgColor
+		cell.ratingControl.layer.backgroundColor = UIColor.white.cgColor
 	}
 	
 }
