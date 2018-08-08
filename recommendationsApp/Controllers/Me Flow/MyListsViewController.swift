@@ -16,6 +16,7 @@ class MyListsViewController: UIViewController {
 	@IBOutlet weak var selectButton: UIButton!
 	@IBOutlet weak var deleteButton: UIButton!
 	@IBOutlet weak var shareButton: UIButton!
+	@IBOutlet weak var emptyShareButton: UIButton!
 	
 	var selecting: Bool = false
 	var myLists: [List] = []
@@ -95,6 +96,7 @@ class MyListsViewController: UIViewController {
 		shareButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
 		
 		deleteButton.alpha = 0
+		emptyShareButton.alpha = 0
 	}
 	
 	func setSelecting() {
@@ -103,6 +105,7 @@ class MyListsViewController: UIViewController {
 		collectionView.allowsSelection = !selecting
 		selectButton.setTitle("Select", for: .normal)
 		deleteButton.alpha = 0
+		emptyShareButton.alpha = 0
 		shareButton.setTitle("Share", for: .normal)
 	}
 	
@@ -113,6 +116,7 @@ class MyListsViewController: UIViewController {
 			collectionView.allowsMultipleSelection = selecting
 			selectButton.setTitle("Done", for: .normal)
 			deleteButton.alpha = 1
+			emptyShareButton.alpha = 1
 			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
 		} else {
 			selecting = false
@@ -120,6 +124,7 @@ class MyListsViewController: UIViewController {
 			selectButton.setTitle("Select", for: .normal)
 			selectedArray.removeAll()
 			deleteButton.alpha = 0
+			emptyShareButton.alpha = 0
 			if SharingStack.toBeShared.count == 0 {
 				shareButton.setTitle("Share", for: .normal)
 			} else {
@@ -139,6 +144,12 @@ class MyListsViewController: UIViewController {
 			self.collectionView.reloadData()
 		}
 	}
+	
+	@IBAction func emptyShareButtonTapped(_ sender: UIButton) {
+		SharingStack.toBeShared = []
+		shareButton.setTitle("Share", for: .normal)
+	}
+	
 	
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
 		if selecting {
@@ -234,9 +245,11 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 		if selecting {
 			if cell.hasBeenSelected{
 				deselectCell(indexPath: indexPath)
+				SharingStack.delete(list: myLists[indexPath.item])
 				return
 			}
 			selectedArray.append(indexPath)
+			SharingStack.add(list: myLists[indexPath.item])
 			collectionView.reloadItems(at: [indexPath])
 			cell.hasBeenSelected = true
 		} else {
@@ -261,6 +274,58 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 struct SharingStack {
 	static var toBeShared: [Any] = []
+	private static var listsToShare: [List] = []
+	private static var recommendationsToShare: [Recommendation] = []
+	
+	// this method should be called when adding whole lists
+	static func add(list: List) {
+		var found: Bool = false
+		for listInStack in listsToShare {
+//			for recoInListInStack in listInStack {
+//			}
+		}
+		
+	}
+	
+	// this method should be called to delete a whole list
+	static func delete(list: List) {
+		var counter: Int = 0
+		for listInStack in listsToShare {
+			if list.referencingId == listInStack.referencingId {
+				listsToShare.remove(at: counter)
+			}
+			counter += 1
+		}
+	}
+	
+	// this method should be called when adding specific recommendations
+	static func add(recommendation: Recommendation) {
+		var found: Bool = false
+		for reco in recommendationsToShare {
+			if recommendation.referencingId == reco.referencingId {
+				found = true
+			}
+		}
+		if !found {
+			recommendationsToShare.append(recommendation)
+		}
+	}
+	
+	// this method should be called when removing a recommendation from stack
+	static func delete(recommendation: Recommendation) {
+		var counter: Int = 0
+		for reco in recommendationsToShare {
+			if recommendation.referencingId == reco.referencingId {
+				recommendationsToShare.remove(at: counter)
+			}
+			counter += 1
+		}
+	}
+	
+	static func readyToShare() {
+		toBeShared.append(listsToShare)
+		toBeShared.append(recommendationsToShare)
+	}
 }
 
 

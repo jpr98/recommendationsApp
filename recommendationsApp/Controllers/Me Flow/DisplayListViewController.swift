@@ -119,15 +119,15 @@ class DisplayListViewController: UIViewController {
 	}
 	
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
-		if isSelecting {
-			for indexPath in selectedArray {
-				SharingStack.toBeShared.append(list.recommendations[indexPath.row])
-			}
-			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
-		} else {
+//		if isSelecting {
+//			for indexPath in selectedArray {
+//				SharingStack.toBeShared.append(list.recommendations[indexPath.row])
+//			}
+//			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
+//		} else {
 			performSegue(withIdentifier: Constants.SegueIdentifier.toShareFromDisplay, sender: (Any).self)
 			SharingStack.toBeShared = []
-		}
+//		}
 	}
 	
 	// MARK: Segues
@@ -204,6 +204,7 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 				return 
 			}
 			selectedArray.append(indexPath)
+			//SharingStack.recommendationsToShare.add(list.recommendations[indexPath.row])
 			tableView.reloadData()
 			cell.hasBeenSelected = true
 		} else {
@@ -213,6 +214,7 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 	
 	func deselect(indexPath: IndexPath) {
 		selectedArray = selectedArray.filter { $0 != indexPath }
+		// take off to be shared
 		tableView.reloadData()
 		let cell = tableView.cellForRow(at: indexPath) as! DisplayListTableViewCell
 		cell.hasBeenSelected = false

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PtC-0H-fZg">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,27 +15,27 @@
             <objects>
                 <viewController id="UBZ-xt-jWl" customClass="LoginViewController" customModule="recommendationsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cF2-D8-pYT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="YkJ-c7-VCa">
-                                <rect key="frame" x="35" y="138.99999999999997" width="305" height="349.33333333333326"/>
+                                <rect key="frame" x="35" y="114.99999999999997" width="344" height="349.33333333333326"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Screen Shot 2018-07-24 at 1.21.04 PM" translatesAutoresizingMaskIntoConstraints="NO" id="es6-Hn-9hD">
-                                        <rect key="frame" x="87.666666666666686" y="0.0" width="130" height="120"/>
+                                        <rect key="frame" x="107" y="0.0" width="130" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="gek-xH-a3w"/>
                                             <constraint firstAttribute="width" constant="130" id="l10-dP-t5f"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join the recommendations movement" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQe-Vt-5hz">
-                                        <rect key="frame" x="5.6666666666666572" y="150" width="293.66666666666674" height="125.33333333333331"/>
+                                        <rect key="frame" x="25.333333333333343" y="150" width="293.66666666666663" height="125.33333333333331"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
                                         <color key="textColor" red="0.89803921568627454" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoS-kZ-u7G">
-                                        <rect key="frame" x="0.0" y="305.33333333333331" width="305" height="44"/>
+                                        <rect key="frame" x="0.0" y="305.33333333333331" width="344" height="44"/>
                                         <color key="backgroundColor" red="0.8980392157" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="aXW-yT-Q02"/>
@@ -76,26 +76,26 @@
             <objects>
                 <viewController id="yIo-sj-lbZ" customClass="CreateUsernameViewController" customModule="recommendationsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pix-Tu-HdO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="q9p-Nv-iQN">
-                                <rect key="frame" x="35" y="89.000000000000014" width="305" height="217.33333333333337"/>
+                                <rect key="frame" x="35" y="65.000000000000014" width="344" height="217.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcj-ZH-3t5">
-                                        <rect key="frame" x="0.0" y="0.0" width="305" height="34.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="34.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="29"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a username so your friends can find you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-lB-Znr">
-                                        <rect key="frame" x="0.0" y="52.666666666666657" width="305" height="40.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="52.666666666666671" width="344" height="40.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.30190208633749516" green="0.30720270707587299" blue="0.33190193587969541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DZE-VF-hyk">
-                                        <rect key="frame" x="0.0" y="111.33333333333334" width="305" height="44"/>
+                                        <rect key="frame" x="0.0" y="111.33333333333334" width="344" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="3zi-bM-rzh"/>
                                         </constraints>
@@ -104,7 +104,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ca-tA-POg">
-                                        <rect key="frame" x="0.0" y="173.33333333333331" width="305" height="44"/>
+                                        <rect key="frame" x="0.0" y="173.33333333333334" width="344" height="44"/>
                                         <color key="backgroundColor" red="0.8980392157" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="XF7-jZ-cnL"/>

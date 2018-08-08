@@ -29,11 +29,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-fs-uuw">
-                                        <rect key="frame" x="295" y="80" width="101" height="32"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-fs-uuw">
+                                        <rect key="frame" x="186" y="80" width="210" height="32"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CgJ-2Q-2IZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="93" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="tintColor" red="0.90196078430000004" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Empty Share"/>
+                                                <connections>
+                                                    <action selector="emptyShareButtonTapped:" destination="hYB-aD-yFL" eventType="touchUpInside" id="Fwo-Eh-FEJ"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMN-yc-vMn">
-                                                <rect key="frame" x="0.0" y="0.0" width="47" height="32"/>
+                                                <rect key="frame" x="105" y="0.0" width="47" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Delete">
                                                     <color key="titleColor" red="0.8980392157" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,7 +52,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkf-GM-unW">
-                                                <rect key="frame" x="55" y="0.0" width="46" height="32"/>
+                                                <rect key="frame" x="164" y="0.0" width="46" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Select">
                                                     <color key="titleColor" red="0.8980392157" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -174,6 +183,7 @@
                         <outlet property="addButton" destination="aAa-fp-oya" id="zCa-Cb-NEd"/>
                         <outlet property="collectionView" destination="dsv-Eg-3Du" id="c4o-42-Meo"/>
                         <outlet property="deleteButton" destination="jMN-yc-vMn" id="Ag2-3Y-hnC"/>
+                        <outlet property="emptyShareButton" destination="CgJ-2Q-2IZ" id="LXi-OK-oud"/>
                         <outlet property="selectButton" destination="Vkf-GM-unW" id="W8F-Y9-OSN"/>
                         <outlet property="shareButton" destination="Ymt-XL-fux" id="wod-pH-FiZ"/>
                         <segue destination="CFU-q0-CeA" kind="presentation" identifier="showList" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="M5G-Qs-EZK"/>
@@ -984,6 +994,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Vxh-nL-O3J"/>
-        <segue reference="WBu-nP-7DI"/>
+        <segue reference="3yi-Nb-ul2"/>
     </inferredMetricsTieBreakers>
 </document>

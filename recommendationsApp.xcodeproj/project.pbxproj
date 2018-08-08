@@ -10,6 +10,9 @@
 		0B37274B211927AF00764F65 /* SharedWithMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B37274A211927AF00764F65 /* SharedWithMeViewController.swift */; };
 		0B38F99E21112E060007CFA2 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38F99D21112E060007CFA2 /* UIImage+Utility.swift */; };
 		0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */; };
+		0B559EC5211A7C5600AD2D39 /* SharedWithMeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B559EC4211A7C5600AD2D39 /* SharedWithMeCollectionViewCell.swift */; };
+		0B559ECB211A86DE00AD2D39 /* DisplaySharedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B559ECA211A86DE00AD2D39 /* DisplaySharedTableViewCell.swift */; };
+		0B559ECD211A871000AD2D39 /* DisplaySharedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B559ECC211A871000AD2D39 /* DisplaySharedViewController.swift */; };
 		0B56587C2119095B00EBA7CD /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B56587B2119095B00EBA7CD /* ShareService.swift */; };
 		0B600572210BA80F004CEA83 /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B600571210BA80F004CEA83 /* ListService.swift */; };
 		0B600574210F9052004CEA83 /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B600573210F9052004CEA83 /* CreateListViewController.swift */; };
@@ -45,6 +48,9 @@
 		0B37274A211927AF00764F65 /* SharedWithMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedWithMeViewController.swift; sourceTree = "<group>"; };
 		0B38F99D21112E060007CFA2 /* UIImage+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
 		0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListTableViewCell.swift; sourceTree = "<group>"; };
+		0B559EC4211A7C5600AD2D39 /* SharedWithMeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedWithMeCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B559ECA211A86DE00AD2D39 /* DisplaySharedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySharedTableViewCell.swift; sourceTree = "<group>"; };
+		0B559ECC211A871000AD2D39 /* DisplaySharedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySharedViewController.swift; sourceTree = "<group>"; };
 		0B56587B2119095B00EBA7CD /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
 		0B600571210BA80F004CEA83 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		0B600573210F9052004CEA83 /* CreateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +99,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B559EC6211A866500AD2D39 /* Me Flow */ = {
+			isa = PBXGroup;
+			children = (
+				0B600575210F933C004CEA83 /* AddRecommendationToListViewController.swift */,
+				0B7F0E8221090C9500385E27 /* MyListsViewController.swift */,
+				0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */,
+				0B600573210F9052004CEA83 /* CreateListViewController.swift */,
+				0BA9807D2118D785001E936F /* ShareViewController.swift */,
+			);
+			path = "Me Flow";
+			sourceTree = "<group>";
+		};
+		0B559EC7211A868C00AD2D39 /* Shared With Me Flow */ = {
+			isa = PBXGroup;
+			children = (
+				0B37274A211927AF00764F65 /* SharedWithMeViewController.swift */,
+				0B559ECC211A871000AD2D39 /* DisplaySharedViewController.swift */,
+			);
+			path = "Shared With Me Flow";
+			sourceTree = "<group>";
+		};
+		0B559EC8211A86A300AD2D39 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */,
+				0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */,
+				0BA9807B2118D6D4001E936F /* UsernameSearchTableViewCell.swift */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		0B559EC9211A86AC00AD2D39 /* Shared WIth Me */ = {
+			isa = PBXGroup;
+			children = (
+				0B559EC4211A7C5600AD2D39 /* SharedWithMeCollectionViewCell.swift */,
+				0B559ECA211A86DE00AD2D39 /* DisplaySharedTableViewCell.swift */,
+			);
+			path = "Shared WIth Me";
+			sourceTree = "<group>";
+		};
 		0B600577210F98BB004CEA83 /* Login Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,10 +195,9 @@
 		0B6B0EA22107B35F009A36C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0B47E358210AA76000BBDC16 /* DisplayListTableViewCell.swift */,
-				0B7F0EB8210A483B00385E27 /* MyListCollectionViewCell.swift */,
+				0B559EC9211A86AC00AD2D39 /* Shared WIth Me */,
+				0B559EC8211A86A300AD2D39 /* Me */,
 				0BB2B6B22113995700BE768E /* UserSearchTableViewCell.swift */,
-				0BA9807B2118D6D4001E936F /* UsernameSearchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,13 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				0B600577210F98BB004CEA83 /* Login Flow */,
-				0B7F0EBF210A6E3B00385E27 /* DisplayListViewController.swift */,
-				0B600575210F933C004CEA83 /* AddRecommendationToListViewController.swift */,
-				0B7F0E8221090C9500385E27 /* MyListsViewController.swift */,
-				0B600573210F9052004CEA83 /* CreateListViewController.swift */,
+				0B559EC6211A866500AD2D39 /* Me Flow */,
+				0B559EC7211A868C00AD2D39 /* Shared With Me Flow */,
 				0BB2B6AE21137FAD00BE768E /* ExploreViewController.swift */,
-				0BA9807D2118D785001E936F /* ShareViewController.swift */,
-				0B37274A211927AF00764F65 /* SharedWithMeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -396,11 +437,13 @@
 				0B47E359210AA76000BBDC16 /* DisplayListTableViewCell.swift in Sources */,
 				0B7F0EB9210A483B00385E27 /* MyListCollectionViewCell.swift in Sources */,
 				0B7F0E7A2108ED2B00385E27 /* CreateUsernameViewController.swift in Sources */,
+				0B559EC5211A7C5600AD2D39 /* SharedWithMeCollectionViewCell.swift in Sources */,
 				0B37274B211927AF00764F65 /* SharedWithMeViewController.swift in Sources */,
 				0BA9807C2118D6D4001E936F /* UsernameSearchTableViewCell.swift in Sources */,
 				0B7F0E89210912D100385E27 /* List.swift in Sources */,
 				0B7F0E8321090C9500385E27 /* MyListsViewController.swift in Sources */,
 				0B600574210F9052004CEA83 /* CreateListViewController.swift in Sources */,
+				0B559ECB211A86DE00AD2D39 /* DisplaySharedTableViewCell.swift in Sources */,
 				0B7F0E7E2108F18900385E27 /* UserService.swift in Sources */,
 				0B600572210BA80F004CEA83 /* ListService.swift in Sources */,
 				0B600576210F933C004CEA83 /* AddRecommendationToListViewController.swift in Sources */,
@@ -409,6 +452,7 @@
 				0BB2B6B32113995700BE768E /* UserSearchTableViewCell.swift in Sources */,
 				0B6B0E902107B2DB009A36C5 /* AppDelegate.swift in Sources */,
 				0B7F0E812108FED400385E27 /* Storyboard+Utility.swift in Sources */,
+				0B559ECD211A871000AD2D39 /* DisplaySharedViewController.swift in Sources */,
 				0BB2B6AF21137FAD00BE768E /* ExploreViewController.swift in Sources */,
 				0B6B0EAA2107C522009A36C5 /* User.swift in Sources */,
 				0BB2B6B12113804E00BE768E /* FollowService.swift in Sources */,

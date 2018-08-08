@@ -12,7 +12,7 @@ import FirebaseDatabase.FIRDataSnapshot
 class List {
 	// MARK: Properites
 	var recommendations: [Recommendation]
-	let category: String
+	var category: String
 	let referencingId: String
 	var isPrivate: Bool
 	var from: String?
