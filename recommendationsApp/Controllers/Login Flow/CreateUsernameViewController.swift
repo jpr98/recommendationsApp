@@ -14,10 +14,12 @@ class CreateUsernameViewController: UIViewController {
 	// MARK: Properties
 	@IBOutlet weak var usernameTextField: UITextField!
 	@IBOutlet weak var nextButton: UIButton!
+	@IBOutlet weak var takenLabel: UILabel!
 	
 	// MARK: Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		nextButton.layer.cornerRadius = 6
 	}
 	
 	@IBAction func nextButtonTapped(_ sender: UIButton) {
@@ -25,16 +27,24 @@ class CreateUsernameViewController: UIViewController {
 			let username = usernameTextField.text,
 			!username.isEmpty else { return }
 		
-		UserService.create(firUser, username: username) { (user) in
-			guard let user = user else { return }
-			print("New user created: \(user.username)")
-			
-			User.setCurrent(user, writeToUserDefaults: true)
-			
-			let initialViewController = UIStoryboard.initialViewController(for: .main)
-			self.view.window?.rootViewController = initialViewController
-			self.view.window?.makeKeyAndVisible()
+		UserService.checkRepeated(username: username) { (repeated) in
+			if repeated {
+				self.takenLabel.alpha = 1
+			} else {
+				self.takenLabel.alpha = 0
+				UserService.create(firUser, username: username) { (user) in
+					guard let user = user else { return }
+					print("New user created: \(user.username)")
+					
+					User.setCurrent(user, writeToUserDefaults: true)
+					
+					let initialViewController = UIStoryboard.initialViewController(for: .main)
+					self.view.window?.rootViewController = initialViewController
+					self.view.window?.makeKeyAndVisible()
+				}
+			}
 		}
+		takenLabel.alpha = 0
 	}
 }
 

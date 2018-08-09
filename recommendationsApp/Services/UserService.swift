@@ -40,6 +40,7 @@ struct UserService {
 		}
 	}
 	
+	// gets all users except current
 	static func getAll(completion: @escaping ([User]) -> Void) {
 		let currentUser = User.current
 		let ref = Database.database().reference().child("users")
@@ -63,6 +64,23 @@ struct UserService {
 			dispatchGroup.notify(queue: .main, execute: {
 				completion(users)
 			})
+		}
+	}
+	
+	// compare if username is occupied
+	static func checkRepeated(username: String, completion: @escaping (Bool) -> Void) {
+		let ref = Database.database().reference().child("users")
+		var repeated = false
+		ref.observeSingleEvent(of: .value) { (snapshot) in
+			for child in snapshot.children {
+				let snap = child as! DataSnapshot
+				if let value = snap.value as? [String: String] {
+					if username == value["username"] {
+						repeated = true
+					}
+				}
+			}
+			completion(repeated)
 		}
 	}
 }

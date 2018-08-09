@@ -106,7 +106,9 @@ struct ListService {
 						listToBeAdded.color = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
 						lists.append(listToBeAdded)
 					} else {
-						lists.append(List(recommendations: [], category: category, listId: snap.key, isPrivate: isPrivate))
+						let listToBeAdded = List(recommendations: [], category: category, listId: snap.key, isPrivate: isPrivate)
+						listToBeAdded.color = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+						lists.append(listToBeAdded)
 					}
 				}
 			}

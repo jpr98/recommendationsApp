@@ -81,7 +81,15 @@ class AddRecommendationToListViewController: UIViewController, UITextViewDelegat
 	
 	// MARK: IBActions
 	@IBAction func addButtonTapped(_ sender: UIButton) {
-		print("add button tapped")
+		if (titleTextField.text?.isEmpty)! {
+			titleTextField.placeholder = "Enter title"
+			return
+		} else if descriptionTextView.text == "Description" {
+			descriptionTextView.text = ""
+			performSegue(withIdentifier: Constants.SegueIdentifier.confirmAdd, sender: self)
+		} else {
+			performSegue(withIdentifier: Constants.SegueIdentifier.confirmAdd, sender: self)
+		}
 	}
 	
 	// MARK: Segues

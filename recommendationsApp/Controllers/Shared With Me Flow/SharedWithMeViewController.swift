@@ -10,28 +10,54 @@ import UIKit
 
 class SharedWithMeViewController: UIViewController {
 	
-	@IBOutlet weak var collectionView: UICollectionView!
+	
+	@IBOutlet weak var tableView: UITableView!
+	
 	
 	var receivedLists: [List] = []
+	
+	lazy var refreshControl: UIRefreshControl = {
+		let refreshControl = UIRefreshControl()
+		refreshControl.addTarget(self, action: #selector(SharedWithMeViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+		refreshControl.tintColor = UIColor(red: 254/255.0, green: 95/255.0, blue: 10/255.0, alpha: 1.0)
+		return refreshControl
+	}()
 	
 	// MARK: ViewDidLoad
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		ShareService.receive { (lists) in
 			self.receivedLists = lists
-			self.collectionView.reloadData()
+			self.tableView.reloadData()
 		}
-		collectionView.delegate = self
-		collectionView.dataSource = self
+
+		tableView.dataSource = self
+		tableView.delegate = self
+		tableView.addSubview(self.refreshControl)
+		tableView.tableFooterView = UIView()
+		tableView.separatorColor = UIColor.clear
 	}
 	
-	func setupLayout() {
-		let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-		layout.sectionInset = UIEdgeInsetsMake(12, 8, 5, 8)
-		layout.minimumInteritemSpacing = 7
-		layout.itemSize = CGSize(width: self.collectionView.frame.width - 60, height: 95)
+	// MARK: UI setup functions
+	func setup(cell: SharedWithMeTableViewCell) {
+		cell.background.layer.backgroundColor = UIColor.white.cgColor
+		cell.contentView.layer.backgroundColor = UIColor.clear.cgColor
+		cell.background.layer.cornerRadius = 4.0
+		cell.background.layer.masksToBounds = false
+		cell.background.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+		cell.background.layer.shadowOffset = CGSize(width: 0, height: 1)
+		cell.background.layer.shadowOpacity = 0.8
 	}
 	
+	@objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+		ShareService.receive { (lists) in
+			self.receivedLists = lists
+			self.tableView.reloadData()
+			refreshControl.endRefreshing()
+		}
+	}
+	
+	// MARK: Segues
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		
 	}
@@ -48,17 +74,30 @@ class SharedWithMeViewController: UIViewController {
 		}
 	}
 }
-extension SharedWithMeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-	
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension SharedWithMeViewController: UITableViewDelegate, UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return receivedLists.count
 	}
-	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.sharedWithMeCell, for: indexPath) as! SharedWithMeCollectionViewCell
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 110
+	}
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifier.sharedWithMeTableViewCell, for: indexPath) as! SharedWithMeTableViewCell
 		
-		cell.nameLabel.text = receivedLists[indexPath.item].from
-		cell.background.layer.backgroundColor = UIColor.blue.cgColor
+		setup(cell: cell)
+		cell.usernameLabel.text = receivedLists[indexPath.row].from!
+		cell.shareTitleLabel.text = receivedLists[indexPath.row].category
+		cell.dateLabel.text = receivedLists[indexPath.row].dateReceived!
+		
 		return cell
 	}
 }
+
+
+
+
+
+
+
+
+

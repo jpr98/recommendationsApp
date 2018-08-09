@@ -59,6 +59,9 @@ class DisplayListViewController: UIViewController {
 		} else {
 			shareButton.setTitle("Share", for: .normal)
 		}
+		if list.recommendations.count > 0 {
+			selectButton.alpha = 1
+		}
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		//super.viewWillDisappear(animated)
@@ -71,6 +74,9 @@ class DisplayListViewController: UIViewController {
 	
 	func setup() {
 		// think about card shadow
+		if list.recommendations.count == 0 {
+			selectButton.alpha = 0
+		}
 		cardView.layer.masksToBounds = true
 		cardView.layer.cornerRadius = 8
 		
@@ -187,6 +193,9 @@ class DisplayListViewController: UIViewController {
 	
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		addButton.alpha = 1
+		if list.recommendations.count > 0 {
+			selectButton.alpha = 1
+		}
 		ListService.showSpecificList(list) { (updatedList) in
 			self.list = updatedList
 			self.tableView.reloadData()
@@ -205,7 +214,9 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 		cell.titleLabel.text = list.recommendations[indexPath.item].title
 		cell.descriptionLabel.text = list.recommendations[indexPath.item].description
 		cell.ratingControl.rating = Double(list.recommendations[indexPath.item].rating)
-		
+		if cell.ratingControl.rating == 0 {
+			cell.ratingControl.alpha = 0
+		}
 		if selectedArray.contains(indexPath) || SharingStack.recommendationsToShare.contains(where: { (reco) -> Bool in
 			return reco.referencingId == list.recommendations[indexPath.row].referencingId
 		}) {

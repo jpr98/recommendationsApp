@@ -20,6 +20,7 @@ class MyListsViewController: UIViewController {
 	var selecting: Bool = false
 	var myLists: [List] = []
 	var selectedArray: [IndexPath] = []
+	var dismiss = true
 	
 	// MARK: ViewDidLoad
 	override func viewDidLoad() {
@@ -32,44 +33,52 @@ class MyListsViewController: UIViewController {
 		collectionView.dataSource = self
 		collectionView.delegate = self
 		
+		dismiss = true
+		
 		collectionView.allowsMultipleSelection = true
 		setupLayout()
 
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
-		self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-		setSelecting()
+		if dismiss {
+			self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+			setSelecting()
+		} else {
+			setSelecting()
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		addButton.alpha = 1
 		shareButton.alpha = 1
+		dismiss = true
 		dismiss(animated: animated, completion: nil)
 	}
 	
+	// MARK: Setup functions
 	func setupLayout() {
 		let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-		layout.sectionInset = UIEdgeInsetsMake(12, 8, 5, 8)
-		layout.minimumInteritemSpacing = 7
-		layout.itemSize = CGSize(width: (self.collectionView.frame.size.width) / 2.2, height: 80)
+		layout.sectionInset = UIEdgeInsetsMake(5, 4, 5, 4)
+		layout.minimumInteritemSpacing = 6
+		layout.itemSize = CGSize(width: (self.collectionView.frame.size.width) / 2.1, height: 90)
 		
 		addButton.alpha = 1
 		addButton.layer.masksToBounds = false
 		addButton.layer.cornerRadius = 0.5 * addButton.bounds.size.width
-		addButton.layer.shadowRadius = 5
-		addButton.layer.shadowColor = UIColor.black.cgColor
+		addButton.layer.shadowRadius = 4
+		addButton.layer.shadowColor = UIColor.black.withAlphaComponent(0.8).cgColor
 		addButton.layer.shadowOpacity = 0.75
-		addButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
+		addButton.layer.shadowOffset = CGSize(width: 0, height: 0.8)
 		
 		//shareButton.layer.backgroundColor = UIColor.gray.cgColor
 		shareButton.layer.masksToBounds = false
 		shareButton.layer.cornerRadius = 0.5 * shareButton.bounds.size.width
-		shareButton.layer.shadowRadius = 5
-		shareButton.layer.shadowColor = UIColor.black.cgColor
+		shareButton.layer.shadowRadius = 4
+		shareButton.layer.shadowColor = UIColor.black.withAlphaComponent(0.8).cgColor
 		shareButton.layer.shadowOpacity = 0.75
-		shareButton.layer.shadowOffset = CGSize(width: 0.6, height: 0.3)
+		shareButton.layer.shadowOffset = CGSize(width: 0, height: 0.8)
 		
 		if SharingStack.toBeSharedCounter > 0{
 			shareButton.setTitle("Send \(SharingStack.toBeSharedCounter)", for: .normal)
@@ -170,6 +179,8 @@ class MyListsViewController: UIViewController {
 				SharingStack.readyToShare()
 				destination.shareStack = SharingStack.toBeShared
 			}
+		case Constants.SegueIdentifier.toProfile:
+			dismiss = false
 		default:
 			print("unexpected segue identifier")
 		}
@@ -183,30 +194,30 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.MyListCell, for: indexPath) as! MyListCollectionViewCell
-		cell.colorView.alpha = 0
 		cell.listCategoryLabel.text = myLists[indexPath.item].category
 		
 		// format cell
-		cell.layer.backgroundColor = myLists[indexPath.item].color?.cgColor
-		cell.layer.borderWidth = 1
-		cell.layer.borderColor = UIColor.black.cgColor
-		cell.layer.masksToBounds = true
-		cell.layer.cornerRadius = 9.0
-		cell.layer.shadowColor = UIColor.black.cgColor
-		cell.layer.shadowRadius = 20
-		cell.layer.shadowOpacity = 0.5
+		cell.shadowView.layer.backgroundColor = myLists[indexPath.item].color?.cgColor
+		cell.layer.backgroundColor = UIColor.clear.cgColor
+		cell.shadowView.layer.cornerRadius = 9.5
+		cell.shadowView.layer.masksToBounds = false
+		cell.shadowView.layer.shadowColor = UIColor.black.withAlphaComponent(0.4).cgColor
+		cell.shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
+		cell.shadowView.layer.shadowOpacity = 0.8
 		
 		// selection
 		if selectedArray.contains(indexPath) || SharingStack.listsToShare.contains(where: { (list) -> Bool in
 			return list.referencingId == myLists[indexPath.item].referencingId
 		}) {
 			cell.hasBeenSelected = true
-			cell.layer.borderColor = UIColor.blue.cgColor
-			cell.layer.borderWidth = 1.5
+			cell.shadowView.layer.borderColor = UIColor.blue.cgColor
+			cell.shadowView.layer.borderWidth = 2.5
+			cell.shadowView.layer.masksToBounds = true
+			
 		} else {
 			cell.hasBeenSelected = false
-			cell.layer.borderWidth = 1
-			cell.layer.borderColor = UIColor.black.cgColor
+			cell.shadowView.layer.borderWidth = 0
+			cell.shadowView.layer.masksToBounds = false
 		}
 		
 		return cell
@@ -241,8 +252,8 @@ extension MyListsViewController: UICollectionViewDelegate, UICollectionViewDataS
 		selectedArray = selectedArray.filter { $0 != indexPath }
 		collectionView.reloadItems(at: [indexPath])
 		let cell = collectionView.cellForItem(at: indexPath) as! MyListCollectionViewCell
-		cell.layer.borderWidth = 1
-		cell.layer.borderColor = UIColor.black.cgColor
+		cell.shadowView.layer.borderWidth = 0
+		cell.shadowView.layer.masksToBounds = true
 		cell.hasBeenSelected = false
 	}
 }

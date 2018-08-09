@@ -15,6 +15,7 @@ typealias FIRUser = FirebaseAuth.User
 
 class LoginViewController: UIViewController {
 	// MARK: Properties
+	@IBOutlet weak var loginButton: UIButton!
 	
 	let providers: [FUIAuthProvider] = [
 		FUIFacebookAuth()
@@ -22,12 +23,13 @@ class LoginViewController: UIViewController {
 	// MARK: Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		loginButton.layer.cornerRadius = 6
 	}
 	
 	@IBAction func loginButtonTapped(_ sender: UIButton) {
 		guard let authUI = FUIAuth.defaultAuthUI()
 			else { return }
-		
+
 		authUI.delegate = self
 		authUI.providers = providers
 		let authViewController = authUI.authViewController()

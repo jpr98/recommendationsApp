@@ -9,7 +9,8 @@
 import UIKit
 
 class MyListCollectionViewCell: UICollectionViewCell {
-	@IBOutlet weak var colorView: UIView!
 	@IBOutlet weak var listCategoryLabel: UILabel!
+	@IBOutlet weak var shadowView: UIView!
+	
 	var hasBeenSelected: Bool!
 }

@@ -65,7 +65,8 @@ struct ShareService {
 				let snap = child as! DataSnapshot
 				if let value = snap.value as? [String: Any] {
 					guard let category = value["share_title"] as? String,
-						let username = value["from"] as? String else { return }
+						let username = value["from"] as? String,
+						let date = value["date"] as? String else { return }
 					
 					// creating list to be filled and returned in array
 					let listOfUser: List = List(recommendations: [], category: category, listId: snap.key, isPrivate: false)
@@ -85,12 +86,12 @@ struct ShareService {
 						
 						listOfUser.recommendations = list
 						listOfUser.from = username
+						listOfUser.dateReceived = date
 						returnArray.append(listOfUser)
 					}
 				}
 			}
 			if returnArray.count > 0 {
-				print(returnArray)
 				completion(returnArray)
 			} else {
 				completion([])

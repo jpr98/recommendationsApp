@@ -71,16 +71,23 @@ class ShareViewController: UIViewController {
 	}
 	
 	@IBAction func trashButtonTapped(_ sender: UIButton) {
-		let alertController = UIAlertController(title: "Delete Sharing Card", message: "Do you want to delete this share card?", preferredStyle: .alert)
-		alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-			SharingStack.reset()
-			self.shareStack.removeAll()
-			self.performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromShare, sender: self)
-		}))
-		alertController.addAction(UIAlertAction(title: "Keep", style: .cancel, handler: { (action) in
-			return
-		}))
-		self.present(alertController, animated: true, completion: nil)
+		
+		if shareStack.count == 0 {
+			let nothingAlertController = UIAlertController(title: "Nothing to delete", message: "You got to fill it up first...", preferredStyle: .alert)
+			nothingAlertController.addAction(UIAlertAction(title: "Oh, okay", style: .cancel, handler: nil))
+			self.present(nothingAlertController, animated: true, completion: nil)
+		} else {
+			let alertController = UIAlertController(title: "Delete Sharing Card", message: "Do you want to delete this share card?", preferredStyle: .alert)
+			alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+				SharingStack.reset()
+				self.shareStack.removeAll()
+				self.performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromShare, sender: self)
+			}))
+			alertController.addAction(UIAlertAction(title: "Keep", style: .cancel, handler: { (action) in
+				return
+			}))
+			self.present(alertController, animated: true, completion: nil)
+		}
 	}
 	
 	@IBAction func selectUser(_ sender: UIButton) {
