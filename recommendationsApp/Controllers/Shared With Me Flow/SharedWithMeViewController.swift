@@ -25,6 +25,13 @@ class SharedWithMeViewController: UIViewController {
 		collectionView.dataSource = self
 	}
 	
+	func setupLayout() {
+		let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+		layout.sectionInset = UIEdgeInsetsMake(12, 8, 5, 8)
+		layout.minimumInteritemSpacing = 7
+		layout.itemSize = CGSize(width: self.collectionView.frame.width - 60, height: 95)
+	}
+	
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
 		
 	}
@@ -51,7 +58,7 @@ extension SharedWithMeViewController: UICollectionViewDelegate, UICollectionView
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.sharedWithMeCell, for: indexPath) as! SharedWithMeCollectionViewCell
 		
 		cell.nameLabel.text = receivedLists[indexPath.item].from
-		
+		cell.background.layer.backgroundColor = UIColor.blue.cgColor
 		return cell
 	}
 }

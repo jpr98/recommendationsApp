@@ -16,6 +16,7 @@ class CreateListViewController: UIViewController {
 	@IBOutlet weak var cardView: UIView!
 	@IBOutlet weak var privateSwitch: UISwitch!
 	
+	var color = [CGFloat]()
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -38,7 +39,9 @@ class CreateListViewController: UIViewController {
 	
 	// this can be deleted because of prepare for segue function below does action when button tapped
 	@IBAction func createButtonTapped(_ sender: UIButton) {
-		print("create button tapped")
+		let randomIndex = Int(arc4random_uniform(UInt32(ColorSet.colorArray.count)))
+		let listColor = ColorSet.colorArray[randomIndex]
+		color = listColor.rgba
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,7 +49,7 @@ class CreateListViewController: UIViewController {
 		
 		switch identifier {
 		case "create":
-			ListService.create(category: categoryTextField.text!, isPrivate: privateSwitch.isOn)
+			ListService.create(category: categoryTextField.text!, isPrivate: privateSwitch.isOn, color: color)
 			print("list created?")
 		case "cancel":
 			print("create list canceled")

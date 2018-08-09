@@ -16,6 +16,7 @@ class List {
 	let referencingId: String
 	var isPrivate: Bool
 	var from: String?
+	var color: UIColor?
 	
 	init(recommendations: [Recommendation], category: String, listId: String, isPrivate: Bool) {
 		self.recommendations = recommendations

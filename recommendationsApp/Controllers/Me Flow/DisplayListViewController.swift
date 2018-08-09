@@ -14,12 +14,12 @@ class DisplayListViewController: UIViewController {
 	@IBOutlet weak var cardView: UIView!
 	@IBOutlet weak var addButton: UIButton!
 	@IBOutlet weak var shareButton: UIButton!
-	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var listCatgoryLabel: UILabel!
 	@IBOutlet weak var darkenView: UIView!
 	@IBOutlet weak var optionsButton: UIButton!
 	@IBOutlet weak var selectButton: UIButton!
+	@IBOutlet weak var colorView: UIView!
 	
 	var isSelecting: Bool = false
 	var selectedArray: [IndexPath] = []
@@ -29,9 +29,9 @@ class DisplayListViewController: UIViewController {
 	// MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+		tableView.reloadData()
 		// set image of list
-		imageView.image = UIImage(named:"bksncofee")
+		colorView.layer.backgroundColor = list.color?.cgColor
 		// set title of list
 		if list.isPrivate {
 			listCatgoryLabel.text = list.category + ""
@@ -54,8 +54,8 @@ class DisplayListViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		if SharingStack.toBeShared.count > 0 {
-			shareButton.setTitle("Share \(SharingStack.toBeShared.count)", for: .normal)
+		if SharingStack.toBeSharedCounter > 0 {
+			shareButton.setTitle("Send \(SharingStack.toBeSharedCounter)", for: .normal)
 		} else {
 			shareButton.setTitle("Share", for: .normal)
 		}
@@ -95,15 +95,15 @@ class DisplayListViewController: UIViewController {
 			isSelecting = true
 			selectButton.setTitle("Done", for: .normal)
 			tableView.allowsMultipleSelection = isSelecting
-			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
+			shareButton.setTitle("\(SharingStack.toBeSharedCounter)", for: .normal)
 		} else {
 			isSelecting = false
 			selectButton.setTitle("Select", for: .normal)
 			tableView.allowsMultipleSelection = isSelecting
-			if SharingStack.toBeShared.count == 0 {
+			if SharingStack.toBeSharedCounter == 0 {
 				shareButton.setTitle("Share", for: .normal)
 			} else {
-				shareButton.setTitle("Share \(SharingStack.toBeShared.count)", for: .normal)
+				shareButton.setTitle("Send \(SharingStack.toBeSharedCounter)", for: .normal)
 			}
 			selectedArray = []
 			tableView.reloadData()
@@ -119,15 +119,46 @@ class DisplayListViewController: UIViewController {
 	}
 	
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
-//		if isSelecting {
-//			for indexPath in selectedArray {
-//				SharingStack.toBeShared.append(list.recommendations[indexPath.row])
-//			}
-//			shareButton.setTitle("\(SharingStack.toBeShared.count)", for: .normal)
-//		} else {
-			performSegue(withIdentifier: Constants.SegueIdentifier.toShareFromDisplay, sender: (Any).self)
-			SharingStack.toBeShared = []
-//		}
+		performSegue(withIdentifier: Constants.SegueIdentifier.toShareFromDisplay, sender: (Any).self)
+	}
+	
+	@IBAction func optionsButtonTapped(_ sender: UIButton) {
+		let actionSheetController = UIAlertController(title: "\(list.category) Options", message: nil, preferredStyle: .actionSheet)
+		if list.isPrivate {
+			actionSheetController.addAction(UIAlertAction(title: "Make Public", style: .default, handler: { (action) in
+				self.list.isPrivate = false
+			}))
+		} else {
+			actionSheetController.addAction(UIAlertAction(title: "Make Private", style: .default, handler: { (action) in
+				self.list.isPrivate = true
+			}))
+		}
+		actionSheetController.addAction(UIAlertAction(title: "Rename", style: .default, handler: { (action) in
+			let renameAlertController = UIAlertController(title: "Rename List", message: "Enter a new name for this list", preferredStyle: .alert)
+			renameAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+			renameAlertController.addTextField(configurationHandler: { textField in
+				textField.text = self.list.category
+			})
+			renameAlertController.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { (action) in
+				if let newTitle = renameAlertController.textFields?.first?.text {
+					ListService.rename(list: self.list, newTitle: newTitle)
+					self.listCatgoryLabel.text = newTitle
+				}
+			}))
+			self.present(renameAlertController, animated: true, completion: nil)
+		}))
+		actionSheetController.addAction(UIAlertAction(title: "Delete List", style: .destructive, handler: { (action) in
+			let confirmDeleteAlertController = UIAlertController(title: "Delete \(self.list.category)", message: "This action can't be undone", preferredStyle: .alert)
+			confirmDeleteAlertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+				self.performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromDisplay, sender: self)
+				ListService.deleteLists(lists: [self.list])
+			}))
+			confirmDeleteAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+			self.present(confirmDeleteAlertController, animated: true, completion: nil)
+		}))
+		actionSheetController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		
+		self.present(actionSheetController, animated: true, completion: nil)
 	}
 	
 	// MARK: Segues
@@ -138,17 +169,16 @@ class DisplayListViewController: UIViewController {
 		case Constants.SegueIdentifier.addToList:
 			let destination = segue.destination as! AddRecommendationToListViewController
 			destination.listAutoId = list.referencingId
-			print("add to list button tapped")
 		case Constants.SegueIdentifier.updateInList:
 			guard let indexPath = tableView.indexPathForSelectedRow else { return }
 			let destination = segue.destination as! AddRecommendationToListViewController
 			destination.listAutoId = list.referencingId
 			destination.recommendationToUpdate = list.recommendations[indexPath.row]
-			print("update in list, cell tapped")
 		case Constants.SegueIdentifier.backToMyListsFromDisplay:
 			print("back to my lists segue")
 		case Constants.SegueIdentifier.toShareFromDisplay:
 			let destination = segue.destination as! ShareViewController
+			SharingStack.readyToShare()
 			destination.shareStack = SharingStack.toBeShared
 		default:
 			print("unexpected segue identifier")
@@ -176,12 +206,12 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 		cell.descriptionLabel.text = list.recommendations[indexPath.item].description
 		cell.ratingControl.rating = Double(list.recommendations[indexPath.item].rating)
 		
-		if selectedArray.contains(indexPath) {
+		if selectedArray.contains(indexPath) || SharingStack.recommendationsToShare.contains(where: { (reco) -> Bool in
+			return reco.referencingId == list.recommendations[indexPath.row].referencingId
+		}) {
 			cell.layer.backgroundColor = UIColor.blue.cgColor
-			cell.ratingControl.layer.backgroundColor = UIColor.blue.cgColor
 		} else {
 			cell.layer.backgroundColor = UIColor.white.cgColor
-			cell.ratingControl.layer.backgroundColor = UIColor.white.cgColor
 		}
 		return cell
 	}
@@ -200,11 +230,14 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 		let cell = tableView.cellForRow(at: indexPath) as! DisplayListTableViewCell
 		if isSelecting {
 			if cell.hasBeenSelected {
+				SharingStack.delete(recommendation: list.recommendations[indexPath.row])
+				shareButton.setTitle("\(SharingStack.toBeSharedCounter)", for: .normal)
 				deselect(indexPath: indexPath)
 				return 
 			}
 			selectedArray.append(indexPath)
-			//SharingStack.recommendationsToShare.add(list.recommendations[indexPath.row])
+			SharingStack.add(recommendation: list.recommendations[indexPath.row])
+			shareButton.setTitle("\(SharingStack.toBeSharedCounter)", for: .normal)
 			tableView.reloadData()
 			cell.hasBeenSelected = true
 		} else {
@@ -214,12 +247,10 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 	
 	func deselect(indexPath: IndexPath) {
 		selectedArray = selectedArray.filter { $0 != indexPath }
-		// take off to be shared
 		tableView.reloadData()
 		let cell = tableView.cellForRow(at: indexPath) as! DisplayListTableViewCell
 		cell.hasBeenSelected = false
 		cell.layer.backgroundColor = UIColor.white.cgColor
-		cell.ratingControl.layer.backgroundColor = UIColor.white.cgColor
 	}
 	
 }

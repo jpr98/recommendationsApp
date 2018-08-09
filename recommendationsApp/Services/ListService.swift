@@ -12,12 +12,15 @@ import FirebaseDatabase
 struct ListService {
 
 	// create list
-	static func create(category: String, isPrivate: Bool) {
+	static func create(category: String, isPrivate: Bool, color: [CGFloat]) {
 		let currentUser = User.current
 		
 		let ref = Database.database().reference().child("lists").child(currentUser.uid).childByAutoId()
-	
-		let values: [String: Any] = ["category": category, "recommendations":[], "isPrivate":isPrivate]
+		let red = Double(color[0])
+		let green = Double(color[1])
+		let blue = Double(color[2])
+		let alpha = Double(color[3])
+		let values: [String: Any] = ["category": category, "recommendations":[], "isPrivate":isPrivate, "red":red, "green":green, "blue":blue, "alpha":alpha]
 		ref.updateChildValues(values) { (error, ref) in
 			if let error = error {
 				assertionFailure(error.localizedDescription)
@@ -88,6 +91,10 @@ struct ListService {
 				if let value = snap.value as? [String:Any] {
 					let category = value["category"] as! String
 					let isPrivate = value["isPrivate"] as! Bool
+					let red = value["red"] as! Double
+					let green = value["green"] as! Double
+					let blue = value["blue"] as! Double
+					let alpha = value["alpha"] as! Double
 					var list = [Recommendation]()
 					if let recommendations = value["recommendations"] as? [String:Any] {
 						for (key,_) in recommendations {
@@ -95,7 +102,9 @@ struct ListService {
 								list.append(Recommendation(title: reco["title"] as! String, rating: reco["rating"] as! Int, description: reco["description"] as! String, referencingId: key))
 							}
 						}
-						lists.append(List(recommendations: list, category: category, listId: snap.key, isPrivate: isPrivate))
+						let listToBeAdded = List(recommendations: list, category: category, listId: snap.key, isPrivate: isPrivate)
+						listToBeAdded.color = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+						lists.append(listToBeAdded)
 					} else {
 						lists.append(List(recommendations: [], category: category, listId: snap.key, isPrivate: isPrivate))
 					}
@@ -127,5 +136,24 @@ struct ListService {
 		}
 	}
 	
-	//  save changes
+	//  update list name
+	static func rename(list: List, newTitle: String) {
+		let currentUser = User.current
+		let ref = Database.database().reference().child("lists").child(currentUser.uid).child(list.referencingId)
+		let value: [String: Any] = ["category": newTitle]
+		ref.updateChildValues(value) { (error, ref) in
+			if let error = error {
+				assertionFailure(error.localizedDescription)
+			}
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+

@@ -41,6 +41,8 @@
 		0BB2B6B12113804E00BE768E /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B6B02113804E00BE768E /* FollowService.swift */; };
 		0BB2B6B32113995700BE768E /* UserSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B6B22113995700BE768E /* UserSearchTableViewCell.swift */; };
 		0BB2B6B521139A0F00BE768E /* Explore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BB2B6B421139A0F00BE768E /* Explore.storyboard */; };
+		0BFD9DB7211BA3780028F4E3 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD9DB6211BA3780028F4E3 /* ColorSet.swift */; };
+		0BFD9DB9211BA3860028F4E3 /* SharingStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD9DB8211BA3860028F4E3 /* SharingStack.swift */; };
 		8FFEEED3C7385A43C4B5426A /* Pods_recommendationsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D2C9816A845797BFC2523F6 /* Pods_recommendationsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,8 @@
 		0BB2B6B02113804E00BE768E /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		0BB2B6B22113995700BE768E /* UserSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchTableViewCell.swift; sourceTree = "<group>"; };
 		0BB2B6B421139A0F00BE768E /* Explore.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Explore.storyboard; sourceTree = "<group>"; };
+		0BFD9DB6211BA3780028F4E3 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		0BFD9DB8211BA3860028F4E3 /* SharingStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingStack.swift; sourceTree = "<group>"; };
 		2D2C9816A845797BFC2523F6 /* Pods_recommendationsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_recommendationsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95807E382C61FB46FF5C1C1 /* Pods-recommendationsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recommendationsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-recommendationsApp/Pods-recommendationsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F8028491011DF8A1167F3798 /* Pods-recommendationsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recommendationsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-recommendationsApp/Pods-recommendationsApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 				0B6B0EAD2107CBB9009A36C5 /* GoogleService-Info.plist */,
 				0B6B0E9B2107B2DD009A36C5 /* Info.plist */,
 				0B7F0E7B2108EE3700385E27 /* Constants.swift */,
+				0BFD9DB6211BA3780028F4E3 /* ColorSet.swift */,
+				0BFD9DB8211BA3860028F4E3 /* SharingStack.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -431,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BFD9DB9211BA3860028F4E3 /* SharingStack.swift in Sources */,
 				0B7F0E872109120F00385E27 /* Recommendation.swift in Sources */,
 				0B7F0E7C2108EE3700385E27 /* Constants.swift in Sources */,
 				0B56587C2119095B00EBA7CD /* ShareService.swift in Sources */,
@@ -439,6 +446,7 @@
 				0B7F0E7A2108ED2B00385E27 /* CreateUsernameViewController.swift in Sources */,
 				0B559EC5211A7C5600AD2D39 /* SharedWithMeCollectionViewCell.swift in Sources */,
 				0B37274B211927AF00764F65 /* SharedWithMeViewController.swift in Sources */,
+				0BFD9DB7211BA3780028F4E3 /* ColorSet.swift in Sources */,
 				0BA9807C2118D6D4001E936F /* UsernameSearchTableViewCell.swift in Sources */,
 				0B7F0E89210912D100385E27 /* List.swift in Sources */,
 				0B7F0E8321090C9500385E27 /* MyListsViewController.swift in Sources */,
@@ -613,7 +621,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.recommendationsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -633,7 +641,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.recommendationsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

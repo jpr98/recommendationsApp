@@ -17,6 +17,7 @@ class ShareViewController: UIViewController {
 	@IBOutlet weak var cancelButton: UIButton!
 	@IBOutlet weak var cardView: UIView!
 	@IBOutlet weak var darkenView: UIView!
+	@IBOutlet weak var trashButton: UIButton!
 	
 	var allUsers: [User] = []
 	var filteredUsers: [User] = []
@@ -58,13 +59,28 @@ class ShareViewController: UIViewController {
 	@IBAction func shareButtonTapped(_ sender: UIButton) {
 		if (shareTitleTextField.text?.isEmpty)! {
 			shareTitleTextField.text = ""
+			shareTitleTextField.layer.borderColor = UIColor.red.cgColor
 		} else if shareStack.count > 0 {
 			ShareService.send(to: selectedUsers, stack: shareStack, named: shareTitleTextField.text!)
 			performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromShare, sender: (Any).self)
+			SharingStack.reset()
 		}
 	}
 	
 	@IBAction func cancelButtonTapped(_ sender: UIButton) {
+	}
+	
+	@IBAction func trashButtonTapped(_ sender: UIButton) {
+		let alertController = UIAlertController(title: "Delete Sharing Card", message: "Do you want to delete this share card?", preferredStyle: .alert)
+		alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+			SharingStack.reset()
+			self.shareStack.removeAll()
+			self.performSegue(withIdentifier: Constants.SegueIdentifier.backToMyListsFromShare, sender: self)
+		}))
+		alertController.addAction(UIAlertAction(title: "Keep", style: .cancel, handler: { (action) in
+			return
+		}))
+		self.present(alertController, animated: true, completion: nil)
 	}
 	
 	@IBAction func selectUser(_ sender: UIButton) {
@@ -83,8 +99,6 @@ class ShareViewController: UIViewController {
 			}
 		}
 	}
-	
-	// MARK: Segues
 }
 // UITableView Delegate and DataSource
 extension ShareViewController: UITableViewDelegate, UITableViewDataSource {
