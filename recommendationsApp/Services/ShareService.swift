@@ -99,88 +99,47 @@ struct ShareService {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// need to upadate this (check slack for ideas)
-	// share lists to a set of users (can be just one of each or multiple)
-	static func sendTo(users: [User], lists: [List]) {
+	// delete whole list from received
+	static func delete(list: List) {
 		let currentUser = User.current
-		for user in users {
-			for list in lists {
-				let ref = Database.database().reference().child("received").child(user.uid).childByAutoId()
-				let values: [String: Any] = ["title": list.category, "recommendations":[], "from": currentUser.username]
-				ref.updateChildValues(values) { (error, ref) in
-					if let error = error {
-						assertionFailure(error.localizedDescription)
-					}
-				}
-				for recommendation in list.recommendations {
-					let recoRef = ref.child("recommendations").childByAutoId()
-					let recoValues: [String: Any] = ["title": recommendation.title, "rating": recommendation.rating, "description": recommendation.description]
-					recoRef.updateChildValues(recoValues) { (error, recoRef) in
-						if let error = error {
-							assertionFailure(error.localizedDescription)
-						}
-					}
-				}
+		let ref = Database.database().reference().child("received").child(currentUser.uid).child(list.referencingId)
+		ref.removeValue { (error, ref) in
+			if let error = error {
+				assertionFailure(error.localizedDescription)
 			}
 		}
 	}
 	
-	// get all lists shared with current user
-	static func getReceivedLists(completion: @escaping ([List]) -> Void) {
+	// delete recommendations from list received
+	static func delete(recommendation: Recommendation, from list: List) {
 		let currentUser = User.current
-		let ref = Database.database().reference().child("received").child(currentUser.uid)
-		var lists = [List]()
-		ref.observeSingleEvent(of: .value) { (snapshot) in
-			print("snapshot!!!!\(snapshot)")
-			for child in snapshot.children {
-				let snap = child as! DataSnapshot
-				print("snap!!!!\(snap)")
-				if let value = snap.value as? [String:Any] {
-					let category = value["title"] as! String
-					var list = [Recommendation]()
-					if let recommendations = value["recommendations"] as? [String:Any] {
-						for (key,_) in recommendations {
-							if let reco = recommendations[key] as? [String: Any] {
-								list.append(Recommendation(title: reco["title"] as! String, rating: reco["rating"] as! Int, description: reco["description"] as! String, referencingId: key))
-							}
-						}
-						lists.append(List(recommendations: list, category: category, listId: snap.key, isPrivate: false))
-					} else {
-						lists.append(List(recommendations: [], category: category, listId: snap.key, isPrivate: false))
-					}
-				}
-			}
-			if lists.count > 0 {
-				completion(lists)
-			} else {
-				completion([])
+		let ref = Database.database().reference().child("received").child(currentUser.uid).child(list.referencingId).child("recommendations").child(recommendation.referencingId)
+		ref.removeValue { (error, ref) in
+			if let error = error {
+				assertionFailure(error.localizedDescription)
 			}
 		}
 	}
 	
+	static func report(list: List) {
+		let currentUser = User.current
+		let ref = Database.database().reference().child("flagged").child(list.referencingId)
+		let flaggedDict = ["list_title":list.category,
+						   "sender":list.from!,
+						   "reporter":currentUser.uid]
+		ref.updateChildValues(flaggedDict)
+		
+		let flagCountRef = ref.child("flag_count")
+		flagCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+			let currentCount = mutableData.value as? Int ?? 0
+			
+			mutableData.value = currentCount + 1
+			
+			return TransactionResult.success(withValue: mutableData)
+		})
+		
+		
+	}
 }
 
 

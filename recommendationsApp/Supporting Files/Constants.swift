@@ -27,6 +27,7 @@ struct Constants {
 		static let toShareFromDisplay = "toShareFromDisplay"
 		static let toDisplaySharedList = "toDisplaySharedList"
 		static let toProfile = "toProfile"
+		static let backToSharedWithMe = "backToSharedWithMe"
 	}
 	
 	struct CellIdentifier {
@@ -36,5 +37,6 @@ struct Constants {
 		static let usernameCell = "usernameCell"
 		static let sharedWithMeCell = "sharedWithMeCell"
 		static let sharedWithMeTableViewCell = "sharedWithMeTableViewCell"
+		static let DisplayShareTableViewCell = "DisplayShareTableViewCell"
 	}
 }

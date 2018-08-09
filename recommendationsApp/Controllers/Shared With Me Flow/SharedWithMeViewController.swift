@@ -13,7 +13,6 @@ class SharedWithMeViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
-	
 	var receivedLists: [List] = []
 	
 	lazy var refreshControl: UIRefreshControl = {
@@ -59,7 +58,10 @@ class SharedWithMeViewController: UIViewController {
 	
 	// MARK: Segues
 	@IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) {
-		
+		ShareService.receive { (lists) in
+			self.receivedLists = lists
+			self.tableView.reloadData()
+		}
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,13 +69,17 @@ class SharedWithMeViewController: UIViewController {
 		
 		switch identifier {
 		case Constants.SegueIdentifier.toDisplaySharedList:
-			//stuff to send the info of the list to next vc
-			print("segue to display a specific list")
+			if let destination = segue.destination as? DisplaySharedViewController {
+				let selected = tableView.indexPathForSelectedRow
+				let listToShow = receivedLists[selected!.row]
+				destination.list = listToShow
+			}
 		default:
 			print("unexpected segue identifier")
 		}
 	}
 }
+
 extension SharedWithMeViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return receivedLists.count
@@ -90,6 +96,17 @@ extension SharedWithMeViewController: UITableViewDelegate, UITableViewDataSource
 		cell.dateLabel.text = receivedLists[indexPath.row].dateReceived!
 		
 		return cell
+	}
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			ShareService.delete(list: receivedLists[indexPath.row])
+			receivedLists.remove(at: indexPath.row)
+			self.tableView.deleteRows(at: [indexPath], with: .automatic)
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		performSegue(withIdentifier: Constants.SegueIdentifier.toDisplaySharedList, sender: self)
 	}
 }
 

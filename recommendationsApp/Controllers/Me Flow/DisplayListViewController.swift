@@ -63,8 +63,8 @@ class DisplayListViewController: UIViewController {
 			selectButton.alpha = 1
 		}
 	}
+	
 	override func viewWillDisappear(_ animated: Bool) {
-		//super.viewWillDisappear(animated)
 		self.dismiss(animated: animated, completion: nil)
 	}
 	
@@ -220,7 +220,7 @@ extension DisplayListViewController: UITableViewDataSource, UITableViewDelegate 
 		if selectedArray.contains(indexPath) || SharingStack.recommendationsToShare.contains(where: { (reco) -> Bool in
 			return reco.referencingId == list.recommendations[indexPath.row].referencingId
 		}) {
-			cell.layer.backgroundColor = UIColor.blue.cgColor
+			cell.layer.backgroundColor = UIColor.gray.cgColor
 		} else {
 			cell.layer.backgroundColor = UIColor.white.cgColor
 		}

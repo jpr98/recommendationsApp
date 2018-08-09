@@ -34,6 +34,7 @@ class ProfileViewController: UIViewController {
 			nameLabel.text = name
 			emailLabel.text = email
 		}
+		feedbackButton.layer.cornerRadius = 8.0
 	}
 	
 	// MARK: IBActions
@@ -48,6 +49,7 @@ class ProfileViewController: UIViewController {
 	@IBAction func cancelButtonTapped(_ sender: UIButton) {
 	}
 	@IBAction func feedbackButtonTapped(_ sender: UIButton) {
+		
 	}
 	
 	// MARK: Logout

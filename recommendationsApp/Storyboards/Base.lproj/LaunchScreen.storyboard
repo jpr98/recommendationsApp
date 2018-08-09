@@ -18,18 +18,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2018-07-30 at 5.52.01 PM" translatesAutoresizingMaskIntoConstraints="NO" id="1gI-vt-EMD">
-                                <rect key="frame" x="57" y="146" width="260" height="175"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="1gI-vt-EMD">
+                                <rect key="frame" x="100" y="196" width="175" height="145"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="260" id="0Zo-8T-zlv"/>
-                                    <constraint firstAttribute="height" constant="175" id="nZi-wF-3Zs"/>
+                                    <constraint firstAttribute="width" constant="175" id="TaX-sw-N2m"/>
+                                    <constraint firstAttribute="height" constant="145" id="hsO-BY-hEy"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vaucht" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aw7-Xt-hjZ">
+                                <rect key="frame" x="110" y="361" width="155" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bDZ-cf-T6y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="45"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.37254901960784315" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1gI-vt-EMD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-100" id="QvK-Uu-Evb"/>
-                            <constraint firstItem="1gI-vt-EMD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jde-MH-Nif"/>
+                            <constraint firstItem="aw7-Xt-hjZ" firstAttribute="top" secondItem="1gI-vt-EMD" secondAttribute="bottom" constant="20" id="AHw-7A-9tm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aw7-Xt-hjZ" secondAttribute="trailing" constant="110" id="N7L-3d-XLV"/>
+                            <constraint firstItem="1gI-vt-EMD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-75" id="Nqc-P0-ZNm"/>
+                            <constraint firstItem="1gI-vt-EMD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bo8-e7-bKC"/>
+                            <constraint firstItem="aw7-Xt-hjZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="x94-HR-OSh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -40,6 +52,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Screen Shot 2018-07-30 at 5.52.01 PM" width="908" height="616"/>
+        <image name="logo-white" width="236" height="216"/>
     </resources>
 </document>
