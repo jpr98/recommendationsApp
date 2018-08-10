@@ -347,7 +347,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="r4W-BZ-KV0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                                <state key="normal" title="Vauch it!">
+                                                <state key="normal" title="Vouch it!">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>

@@ -110,7 +110,7 @@ class MyListsViewController: UIViewController {
 			selectButton.setTitle("Done", for: .normal)
 			deleteButton.alpha = 1
 			shareButton.setTitle("\(SharingStack.toBeSharedCounter)", for: .normal)
-			shareButton.isEnabled = false
+			//shareButton.isEnabled = false
 		} else {
 			selecting = false
 			collectionView.allowsMultipleSelection = selecting
