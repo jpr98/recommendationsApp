@@ -50,6 +50,13 @@ playground.xcworkspace
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 Pods/
+logo.psd
+logo.png
+icon.png
+logo-white.png
+iPhone_678_Plus/
+iPhone_X/
+iOS/
 #
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
